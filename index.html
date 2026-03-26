@@ -1,68 +1,1530 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- TODO: Set the document title to the name of your application -->
-    <title>Lovable App</title>
-    <meta name="description" content="Lovable Generated Project">
-    <meta name="author" content="Lovable" />
-
-    <!-- TODO: Update og:title to match your application name -->
-    
-    
-    <meta property="og:type" content="website" />
-    <meta property="og:image" content="https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/f1d4fdb0-7053-45bc-bf79-01020ca28e12/id-preview-a701156f--599f5622-55bd-4eaa-96f2-250e8470159d.lovable.app-1771084884390.png">
-
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:site" content="@Lovable" />
-    <meta name="twitter:image" content="https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/f1d4fdb0-7053-45bc-bf79-01020ca28e12/id-preview-a701156f--599f5622-55bd-4eaa-96f2-250e8470159d.lovable.app-1771084884390.png">
-    <meta property="og:title" content="Lovable App">
-  <meta name="twitter:title" content="Lovable App">
-  <meta property="og:description" content="Lovable Generated Project">
-  <meta name="twitter:description" content="Lovable Generated Project">
-    <script>
-    // Normalize /index.html to / so BrowserRouter matches routes.
-    (function () {
-      var p = window.location.pathname;
-      if (p.endsWith('/index.html')) {
-        var next = p.slice(0, -'/index.html'.length) || '/';
-        window.history.replaceState(null, '', next + window.location.search + window.location.hash);
-      }
-    })();
-  </script>
-  <script type="module" crossorigin src="./assets/index-DYJtFR5s.js"></script>
-  <link rel="stylesheet" crossorigin href="./assets/index-B53JwCB0.css">
-
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>mero trend</title>
+</head>
 <style>
-  .hero-gradient.h-\[70vh\] {
-    position: relative;
-    background-image: linear-gradient(90deg, #ff876f 0%, #f56f62 46%, #ef6a62 100%);
-    overflow: hidden;
+    /* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Body */
+body {
+  font-family: Arial, sans-serif;
+}
+
+/* Header */
+header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: #f3f3f3;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+/* Container */
+.container {
+  max-width: 1200px;
+  margin: auto;
+  padding: 0 20px;
+  /* display: flex; */
+  align-items: center;
+  justify-content: space-between;
+  /* height: 70px; */
+}
+
+/* Logo */
+header a {
+  text-decoration: none;
+}
+
+header .font-display {
+  font-size: 28px;
+  font-weight: bold;
+  color: #222;
+}
+
+/* Gradient text (Trend) */
+.text-gradient {
+  color: #f97316; /* orange */
+}
+
+/* Navbar */
+nav {
+  display: flex;
+  gap: 30px;
+}
+
+nav a {
+  font-size: 14px;
+  color: #666;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+/* Active link */
+nav a:first-child {
+  color: #f97316;
+}
+
+/* Hover */
+nav a:hover {
+  color: #f97316;
+}
+
+/* Right side icons */
+header .flex {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+/* Cart button */
+header .flex a {
+  padding: 8px;
+  transition: 0.3s;
+}
+
+header .flex a:hover {
+  background: transparent;
+}
+
+.navbar-cart {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #6b21a8 !important;
+}
+
+.navbar-cart svg {
+  width: 100px;
+  height: 100px;
+  stroke-width: 1.8;
+  stroke: #6b21a8 !important;
+}
+
+.navbar-menu {
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  padding: 6px;
+  color: #111111 !important;
+}
+
+.navbar-menu svg {
+  width: 36px;
+  height: 36px;
+  stroke-width: 2.2;
+  stroke: #111111 !important;
+}
+
+.navbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.header-menu-toggle {
+  display: none;
+  width: 42px;
+  height: 42px;
+  align-items: center;
+  justify-content: center;
+  /* border: 1px solid rgba(17, 24, 39, 0.08); */
+  border-radius: 14px;
+  /* background: rgba(255, 255, 255, 0.96); */
+  /* box-shadow: 0 14px 30px rgba(15, 23, 42, 0.08); */
+  flex-shrink: 0;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+}
+
+.header-menu-toggle-lines {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  position: relative;
+  width: 22px;
+  height: 18px;
+  justify-content: center;
+}
+
+.header-menu-toggle-lines span {
+  display: block;
+  width: 22px;
+  height: 2.5px;
+  border-radius: 999px;
+  background: #4b5563;
+  position: absolute;
+  left: 0;
+  transition: transform 0.24s ease, opacity 0.2s ease, top 0.24s ease;
+}
+
+.header-menu-toggle-lines span:nth-child(1) {
+  top: 0;
+}
+
+.header-menu-toggle-lines span:nth-child(2) {
+  top: 7px;
+}
+
+.header-menu-toggle-lines span:nth-child(3) {
+  top: 14px;
+}
+
+.header-menu-toggle.open .header-menu-toggle-lines span:nth-child(1) {
+  top: 7px;
+  transform: rotate(45deg);
+}
+
+.header-menu-toggle.open .header-menu-toggle-lines span:nth-child(2) {
+  opacity: 0;
+}
+
+.header-menu-toggle.open .header-menu-toggle-lines span:nth-child(3) {
+  top: 7px;
+  transform: rotate(-45deg);
+}
+
+.header-mobile-menu {
+  position: fixed;
+  inset: 0;
+  padding: 12px 12px 20px;
+  background: rgba(241, 245, 249, 0.82);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateX(100%);
+  transition: opacity 0.22s ease, transform 0.28s ease, visibility 0.22s ease;
+  z-index: 120;
+  display: flex;
+  flex-direction: column;
+}
+
+.header-mobile-menu.open {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(0);
+}
+
+.header-mobile-menu a {
+  display: flex;
+  align-items: center;
+  min-height: 48px;
+  padding: 0;
+  color: #475569;
+  text-decoration: none;
+  font-size: 18px;
+  font-weight: 500;
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.header-mobile-menu a:hover {
+  color: #ea580c;
+  transform: translateX(2px);
+}
+
+.menu-panel-shell {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 8px 10px 18px;
+  background: #ffffff;
+  border: 1px solid #dbe4ee;
+  box-shadow: 0 20px 40px rgba(15, 23, 42, 0.08);
+}
+
+.menu-panel-top {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 20px;
+}
+
+.menu-panel-close {
+  width: 40px;
+  height: 40px;
+  border: none;
+  background: transparent;
+  color: #6b7280;
+  font-size: 34px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.menu-panel-links {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 6px 10px 0;
+}
+
+.menu-panel-spacer {
+  flex: 1;
+}
+
+.menu-panel-cta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 54px;
+  margin: 0 8px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #f28a5b, #f07c56);
+  color: #334155 !important;
+  font-size: 17px !important;
+  font-weight: 500 !important;
+  box-shadow: 0 16px 28px rgba(240, 124, 86, 0.24);
+}
+
+.menu-panel-cta:hover {
+  color: #1f2937 !important;
+  transform: none !important;
+}
+
+
+/* Mobile menu button */
+button {
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+/* Hide mobile button on desktop */
+@media (min-width: 768px) {
+  button {
+    /* display: none; */
+  }
+}
+
+/* Hide nav on mobile */
+@media (max-width: 767px) {
+  nav {
+    display: none;
   }
 
-  .hero-gradient.h-\[70vh\]::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background-image: url("./assets/mero.png");
-    background-repeat: no-repeat;
-    background-position: center bottom;
-    background-size: contain;
-    pointer-events: none;
-    z-index: 0;
+  .header-menu-toggle {
+    display: inline-flex;
+  }
+}
+/* Hero Section */
+section.first {
+  position: relative;
+  height: 90vh;
+  overflow: hidden;
+}
+
+/* Background Image */
+section img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* Dark Overlay */
+section::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  /* background: rgba(0, 0, 0, 0.35); */
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* Content container */
+section .container {
+  position: relative;
+  z-index: 1;
+  height: 100%;
+  /* display: flex; */
+  align-items: center;
+  padding: 0 20px;
+  max-width: 1200px;
+  margin: auto;
+}
+
+/* Text box */
+section .max-w-xl {
+  max-width: 550px;
+  color: white;
+}
+
+/* Small text */
+section p:first-child {
+  font-size: 13px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+  opacity: 0.8;
+}
+
+/* Heading */
+section h1 {
+  font-size: 48px;
+  line-height: 1.2;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+/* Paragraph */
+section p:nth-child(3) {
+  font-size: 16px;
+  margin-bottom: 30px;
+  opacity: 0.85;
+}
+
+/* Buttons container */
+section .flex {
+  display: flex;
+  gap: 15px;
+}
+
+/* Primary Button */
+.hero-gradient {
+  background: linear-gradient(90deg, #f97316, #fb923c);
+  color: white;
+  padding: 12px 28px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 600;
+  /* display: inline-flex; */
+  align-items: center;
+  gap: 8px;
+  transition: 0.3s;
+}
+
+.hero-gradient:hover {
+  opacity: 0.9;
+}
+
+/* Secondary Button */
+section .flex a:last-child {
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(6px);
+  /* color: white; */
+  padding: 12px 28px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  transition: 0.3s;
+}
+
+section .flex a:last-child:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+/* Responsive */
+/* @media (max-width: 768px) {
+  section {
+    height: 90vh;
   }
 
-  .hero-gradient.h-\[70vh\] > * {
-    position: relative;
-    z-index: 1;
+  section h1 {
+    font-size: 32px;
   }
-</style></head>
 
-  <body>
-    <div id="root"></div>
-  
+  section .flex {
+    flex-direction: column;
+  }
+} */
+
+/* Section */
+/* section {
+  background: #f8f8f8;
+  border-bottom: 1px solid #e5e5e5;
+} */
+
+/* Container */
+.container {
+  max-width: 1200px;
+  margin: auto;
+  padding: 25px 20px;
+}
+
+/* Grid layout */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+/* Desktop 4 columns */
+@media (min-width: 768px) {
+  .grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* Each item */
+.grid > div {
+  /* display: flex; */
+  align-items: center;
+  gap: 12px;
+}
+
+/* Icon circle */
+.grid .w-10 {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(249, 115, 22, 0.1); /* light orange */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+/* Icon */
+.grid svg {
+  width: 20px;
+  height: 20px;
+  color: #f97316;
+}
+
+/* Title */
+.grid p:first-child {
+  font-size: 14px;
+  font-weight: 600;
+  color: #222;
+}
+
+/* Description */
+.grid p:last-child {
+  font-size: 12px;
+  color: #777;
+}
+
+/* Section */
+/* section {
+  background: #ffffff;
+  padding: 60px 0;
+} */
+
+/* Container */
+.container {
+  max-width: 1200px;
+  margin: auto;
+  padding: 0 20px;
+}
+
+/* Header (title + view all) */
+.container > .flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 40px;
+}
+
+/* Heading */
+h2 {
+  font-size: 34px;
+  font-weight: bold;
+  color: #222;
+  margin-bottom: 5px;
+}
+
+/* Subtitle */
+.container > .flex p {
+  color: #777;
+  font-size: 14px;
+}
+
+/* View all */
+.container > .flex a {
+  color: #f97316;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.container > .flex a:hover {
+  text-decoration: underline;
+}
+
+/* Grid */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+/* Responsive */
+@media (min-width: 768px) {
+  .grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* Card */
+.group {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Image container */
+.group > div:first-child {
+  position: relative;
+  overflow: hidden;
+  border-radius: 12px;
+  background: #f3f3f3;
+  aspect-ratio: 4/5;
+}
+
+/* Image */
+.group img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: 0.5s;
+}
+
+/* Hover zoom */
+.group:hover img {
+  transform: scale(1.05);
+}
+
+/* Discount badge */
+.group span:first-of-type {
+  /* position: absolute; */
+  top: 12px;
+  left: 12px;
+  background: linear-gradient(90deg, #f97316, #fb923c);
+  color: white;
+  font-size: 12px;
+  font-weight: bold;
+  padding: 4px 10px;
+  border-radius: 20px;
+}
+
+/* Overlay */
+.group > div:first-child::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0);
+  transition: 0.3s;
+}
+
+.group:hover > div:first-child::after {
+  background: rgba(0,0,0,0.2);
+}
+
+/* Action buttons container */
+.group > div:first-child > div {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  opacity: 0;
+  transition: 0.3s;
+}
+
+.group:hover > div:first-child > div {
+  opacity: 1;
+}
+
+/* Circle buttons */
+.group button,
+.group span.w-10 {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: 0.3s;
+}
+
+/* Button hover */
+.group button:hover {
+  background: #f97316;
+  color: white;
+}
+
+/* Product details */
+.group .mt-3 {
+  margin-top: 12px;
+}
+
+/* Category */
+.group p {
+  font-size: 12px;
+  color: #777;
+}
+
+/* Product name */
+.group h3 {
+  font-size: 14px;
+  font-weight: 500;
+  color: #222;
+  transition: 0.3s;
+}
+
+/* Hover color */
+.group:hover h3 {
+  color: #f97316;
+}
+
+/* Price row */
+.group .flex {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+/* Price */
+.group .flex span:first-child {
+  font-weight: 600;
+  color: #222;
+}
+
+/* Old price */
+.group .flex span:last-child {
+  font-size: 12px;
+  color: #888;
+  text-decoration: line-through;
+}
+
+/* Section */
+/* section {
+  padding: 60px 0;
+  background: #f9f9f9;
+} */
+
+/* Container */
+.container {
+  max-width: 1200px;
+  margin: auto;
+  padding: 0 20px;
+}
+
+/* Heading center */
+.text-center {
+  text-align: center;
+  margin-bottom: 40px;
+  margin-top: 50px;
+}
+
+/* Title */
+.text-center h2 {
+  font-size: 34px;
+  font-weight: bold;
+  color: #222;
+  margin-bottom: 8px;
+}
+
+/* Subtitle */
+.text-center p {
+  /* color: #777; */
+  font-size: 15px;
+}
+
+/* Grid */
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 25px;
+}
+
+/* Desktop 3 column */
+@media (min-width: 768px) {
+  .grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* Card */
+.bg-card {
+  background: #ffffff;
+  /* border-radius: 14px; */
+  padding: 25px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+  transition: 0.3s;
+}
+
+/* Stars */
+.flex {
+  display: flex;
+  gap: 5px;
+  margin-bottom: 12px;
+}
+
+.flex svg {
+  width: 16px;
+  height: 16px;
+  fill: #f97316;
+  color: #f97316;
+}
+
+/* Review text */
+.bg-card > p {
+  font-size: 14px;
+  color: #444;
+  line-height: 1.6;
+  margin-bottom: 15px;
+}
+
+/* Name */
+.bg-card div p:first-child {
+  font-weight: 600;
+  font-size: 14px;
+  color: #222;
+}
+
+/* Location */
+.bg-card div p:last-child {
+  font-size: 12px;
+  color: #888;
+}
+
+/* RESET */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* CONTAINER */
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 10px 16px;
+}
+
+/* HERO SECTION */
+.hero-gradient {
+  background: linear-gradient(135deg, #f97316, #f59e0b);
+  /* padding: 64px 0; */
+  text-align: center;
+  color: #ffffff;
+}
+
+.hero-gradient h2 {
+  font-size: 32px;
+  font-weight: 700;
+  margin-bottom: 12px;
+  color: white;
+}
+
+.hero-gradient p {
+  opacity: 0.8;
+  margin-bottom: 24px;
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.hero-gradient form {
+  display: flex;
+  gap: 8px;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.hero-gradient input {
+  flex: 1;
+  padding: 12px 16px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(6px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: #ffffff;
+  font-size: 14px;
+  outline: none;
+}
+
+.hero-gradient input::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.hero-gradient input:focus {
+  border-color: rgba(255, 255, 255, 0.6);
+}
+
+.hero-gradient button {
+  background: #111111;
+  color: #ffffff;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 14px;
+  border: none;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+.hero-gradient button:hover {
+  opacity: 0.9;
+}
+
+/* FOOTER */
+footer {
+  background: #111111;
+  color: #ffffff;
+}
+
+footer .container {
+  padding: 64px 16px;
+}
+
+footer .grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 40px;
+}
+
+/* BRAND */
+footer h3 {
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+
+footer h3 span {
+  color: #f97316;
+}
+
+footer p {
+  font-size: 14px;
+  line-height: 1.6;
+  opacity: 0.7;
+  margin-bottom: 16px;
+}
+
+/* SOCIAL ICONS */
+footer .flex {
+  display: flex;
+  gap: 12px;
+}
+
+footer .flex a {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: 0.3s;
+}
+
+footer .flex a:hover {
+  background: #f97316;
+}
+
+/* HEADINGS */
+footer h4 {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+
+/* LINKS */
+footer ul {
+  list-style: none;
+}
+
+footer ul li {
+  margin-bottom: 8px;
+}
+
+footer ul a {
+  text-decoration: none;
+  color: rgba(255,255,255,0.7);
+  font-size: 14px;
+  transition: color 0.3s;
+}
+
+footer ul a:hover {
+  color: #f97316;
+}
+
+/* CONTACT LIST */
+footer .space-y-3 li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+  font-size: 14px;
+  opacity: 0.7;
+}
+
+/* FOOTER BOTTOM */
+footer .border-top {
+  border-top: 1px solid rgba(255,255,255,0.1);
+  margin-top: 40px;
+  padding-top: 24px;
+  text-align: center;
+  font-size: 14px;
+  opacity: 0.5;
+}
+
+/* RESPONSIVE */
+@media (max-width: 1024px) {
+  footer .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  footer .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-gradient form {
+    flex-direction: column;
+  }
+}
+
+html, body {
+  overflow-x: hidden;
+}
+
+img {
+  max-width: 100%;
+}
+
+header .container {
+  display: flex;
+  min-height: 72px;
+}
+
+@media (max-width: 1024px) {
+  footer .container {
+    padding: 48px 32px;
+  }
+}
+
+@media (max-width: 768px) {
+  header .container {
+    padding: 12px 16px;
+    min-height: 64px;
+  }
+
+  header .font-display {
+    font-size: 24px;
+  }
+
+  section.first {
+    height: auto;
+    min-height: 78vh;
+  }
+
+  section.first .container {
+    min-height: 78vh;
+    padding: 88px 16px 48px;
+    align-items: flex-end;
+  }
+
+  section h1 {
+    font-size: 34px;
+  }
+
+  section .max-w-xl {
+    max-width: 100%;
+  }
+
+  section .flex,
+  .hero-gradient form,
+  .container > .flex {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .container > .flex {
+    gap: 12px;
+    margin-bottom: 28px;
+  }
+
+  section .flex a,
+  .hero-gradient button {
+    justify-content: center;
+    width: 100%;
+  }
+
+  .reviews {
+    padding: 56px 20px;
+  }
+
+  footer .container {
+    padding: 40px 20px;
+  }
+}
+
+@media (max-width: 520px) {
+  .grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  section h1,
+  h2,
+  .text-center h2,
+  .hero-gradient h2 {
+    font-size: 28px;
+  }
+
+  .container {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .bg-card {
+    padding: 20px;
+  }
+}
+</style>
+<body>
+    <header class="sticky top-0 z-50 bg-background/95 backdrop-blur-md border-b border-border">
+        <div class="container mx-auto px-4 flex items-center justify-between h-16 md:h-20">
+            <a class="font-display text-2xl md:text-3xl font-bold tracking-tight text-foreground" href="index.html">Mero
+                <span class="text-gradient">Trend</span>
+            </a>
+            <nav class="hidden md:flex items-center gap-8">
+                <a class="text-sm font-medium tracking-wide transition-colors hover:text-primary text-primary" href="index.html">Home</a>
+                <a class="text-sm font-medium tracking-wide transition-colors hover:text-primary text-muted-foreground" href="shop.html">Shop</a>
+                <a class="text-sm font-medium tracking-wide transition-colors hover:text-primary text-muted-foreground" href="shop.html">Categories</a>
+                <a class="text-sm font-medium tracking-wide transition-colors hover:text-primary text-muted-foreground" href="about.html">About</a>
+                <a class="text-sm font-medium tracking-wide transition-colors hover:text-primary text-muted-foreground" href="contact.html">Contact</a>
+            </nav>
+            <button type="button" class="header-menu-toggle" id="mobileMenuToggle" aria-label="Open navigation menu" aria-expanded="false">
+                <span class="header-menu-toggle-lines">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </span>
+            </button>
+        </div>
+        <div class="header-mobile-menu" id="mobileMenu">
+            <div class="menu-panel-shell">
+                <div class="menu-panel-top">
+                    <button type="button" class="menu-panel-close" id="mobileMenuClose" aria-label="Close navigation menu">×</button>
+                </div>
+                <div class="menu-panel-links">
+                    <a href="index.html">Home</a>
+                    <a href="about.html">About</a>
+                    <a href="shop.html">Shop</a>
+                    <a href="shop.html">Categories</a>
+                    <a href="contact.html">Contact</a>
+                </div>
+                <div class="menu-panel-spacer"></div>
+            </div>
+        </div>
+    </header>
+
+<section class="first">
+        <img src="mero.jpeg" alt="MeroTrend Fashion" class="absolute inset-0 w-full h-full object-cover">
+        <div class="absolute inset-0 bg-foreground/40"></div>
+        <div class="relative container mx-auto px-4 h-full flex items-center">
+                <div class="max-w-xl" style="opacity: 1; transform: none;">
+                    <p class="text-primary-foreground/80 text-sm tracking-[0.2em] uppercase mb-3 font-body">Based in Birtamode, Nepal</p>
+                    <h1 class="text-4xl md:text-6xl font-bold text-primary-foreground leading-tight mb-4">Latest Fashion Trends Delivered Across All Over the world</h1>
+                    <p class="text-primary-foreground/80 text-lg mb-8 font-body">Discover curated women's fashion styles. From Jhapa to Humla — fashion at your doorstep.</p>
+                         <div class="flex gap-3">
+                                  <a class="hero-gradient text-primary-foreground px-8 py-3 rounded-lg font-semibold text-sm tracking-wide hover:opacity-90 transition-opacity inline-flex items-center gap-2" href="shop.html" onclick="window.location.href='./shop.html'; return false;">Shop Now 
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right w-4 h-4">
+                                      <path d="M5 12h14"></path>
+                                         <path d="m12 5 7 7-7 7"></path>
+                                </svg>
+                             </a>
+                                <a class="bg-primary-foreground/20 backdrop-blur-sm text-primary-foreground px-8 py-3 rounded-lg font-semibold text-sm tracking-wide hover:bg-primary-foreground/30 transition-colors border border-primary-foreground/30" href="about.html" style="color: white;">Our Story</a>
+                        </div>
+             </div>
+        </div>
+</section>
+
+<section class="bg-card border-b border-border">
+    <div class="container mx-auto px-4 py-6">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-truck w-5 h-5 text-primary">
+                        <path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2"></path>
+                        <path d="M15 18H9"></path>
+                        <path d="M19 18h2a1 1 0 0 0 1-1v-3.65a1 1 0 0 0-.22-.624l-3.48-4.35A1 1 0 0 0 17.52 8H14"></path>
+                        <circle cx="17" cy="18" r="2"></circle>
+                        <circle cx="7" cy="18" r="2"></circle>
+                    </svg>
+                </div>
+                <div>
+                    <p class="font-semibold text-sm text-foreground">Nationwide Delivery</p>
+                    <p class="text-xs text-muted-foreground">Delivering across all 77 districts of Nepal</p>
+                </div>
+            </div>
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-shield w-5 h-5 text-primary">
+                        <path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"></path>
+                    </svg>
+                </div>
+                <div>
+                    <p class="font-semibold text-sm text-foreground">Secure Payment</p>
+                    <p class="text-xs text-muted-foreground">Safe and trusted payment methods</p>
+                </div>
+            </div>
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-rotate-ccw w-5 h-5 text-primary">
+                        <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"></path>
+                        <path d="M3 3v5h5"></path>
+                    </svg>
+                </div>
+                <div>
+                    <p class="font-semibold text-sm text-foreground">Easy Returns</p>
+                    <p class="text-xs text-muted-foreground">7-day hassle-free return policy</p>
+                </div>
+            </div>
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-star w-5 h-5 text-primary">
+                        <path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"></path>
+                    </svg>
+                </div>
+                <div>
+                    <p class="font-semibold text-sm text-foreground">Quality Products</p>
+                    <p class="text-xs text-muted-foreground">Curated fashion for every taste</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="bg-card py-16">
+    <div class="container mx-auto px-4">
+        <div class="flex items-center justify-between mb-10">
+            <div>
+                <h2 class="text-3xl md:text-4xl font-bold text-foreground mb-2">Trending Now</h2>
+                <p class="text-muted-foreground">Our top-rated picks</p>
+            </div>
+            <a class="text-sm text-primary font-semibold hover:underline inline-flex items-center gap-1" href="shop.html">View All 
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right w-4 h-4">
+                    <path d="M5 12h14"></path>
+                    <path d="m12 5 7 7-7 7"></path>
+                </svg>
+            </a>
+        </div>
+        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
+            <a class="group block" href="products/product1.html">
+                <div class="relative overflow-hidden rounded-lg bg-secondary aspect-[4/5]">
+                    <img src="https://images.unsplash.com/photo-1572804013309-59a88b7e92f1?w=400&amp;h=500&amp;fit=crop&amp;crop=top" alt="Bohemian Floral Maxi Dress" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy">
+                    <span class="absolute top-3 left-3 hero-gradient text-primary-foreground text-xs font-bold px-2.5 py-1 rounded-full">-20%</span>
+                    <!-- <div class="absolute inset-0 bg-foreground/0 group-hover:bg-foreground/20 transition-colors duration-300 flex items-center justify-center gap-2 opacity-0 group-hover:opacity-100">
+                        <button class="w-10 h-10 rounded-full bg-background text-foreground flex items-center justify-center hover:bg-primary hover:text-primary-foreground transition-colors">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-shopping-cart w-4 h-4">
+                                <circle cx="8" cy="21" r="1"></circle>
+                                <circle cx="19" cy="21" r="1"></circle>
+                                <path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"></path>
+                            </svg>
+                        </button>
+                        <span class="w-10 h-10 rounded-full bg-background text-foreground flex items-center justify-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-eye w-4 h-4">
+                                <path d="M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0"></path>
+                                <circle cx="12" cy="12" r="3"></circle>
+                            </svg>
+                        </span>
+                    </div> -->
+                </div>
+                <div class="mt-3 space-y-1">
+                    <p class="text-xs text-muted-foreground">Women's Wear</p>
+                    <h3 class="font-medium text-sm text-foreground group-hover:text-primary transition-colors line-clamp-1">Bohemian Floral Maxi Dress</h3>
+                    <div class="flex items-center gap-2">
+                        <span class="font-semibold text-foreground">NPR 3,999</span>
+                        <span class="text-xs text-muted-foreground line-through">NPR 4,999</span>
+                    </div>
+                </div>
+            </a>
+            <a class="group block" href="./products/product2.html">
+                <div class="relative overflow-hidden rounded-lg bg-secondary aspect-[4/5]">
+                    <img src="https://images.unsplash.com/photo-1564257631407-4deb1f99d992?w=400&amp;h=500&amp;fit=crop&amp;crop=top" alt="Satin V-Neck Blouse" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy">
+                    <!-- <div class="absolute inset-0 bg-foreground/0 group-hover:bg-foreground/20 transition-colors duration-300 flex items-center justify-center gap-2 opacity-0 group-hover:opacity-100">
+                        <button class="w-10 h-10 rounded-full bg-background text-foreground flex items-center justify-center hover:bg-primary hover:text-primary-foreground transition-colors">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-shopping-cart w-4 h-4">
+                                <circle cx="8" cy="21" r="1"></circle>
+                                <circle cx="19" cy="21" r="1"></circle>
+                                <path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"></path>
+                            </svg>
+                        </button>
+                        <span class="w-10 h-10 rounded-full bg-background text-foreground flex items-center justify-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-eye w-4 h-4">
+                                <path d="M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0"></path>
+                                <circle cx="12" cy="12" r="3"></circle>
+                            </svg>
+                        </span>
+                    </div> -->
+                </div>
+                <div class="mt-3 space-y-1">
+                    <p class="text-xs text-muted-foreground">Women's Wear</p>
+                    <h3 class="font-medium text-sm text-foreground group-hover:text-primary transition-colors line-clamp-1">Satin V-Neck Blouse</h3>
+                    <div class="flex items-center gap-2">
+                        <span class="font-semibold text-foreground">NPR 2,799</span>
+                    </div>
+                </div>
+            </a>
+            <a class="group block" href="./products/product3.html">
+                <div class="relative overflow-hidden rounded-lg bg-secondary aspect-[4/5]">
+                    <img src="https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?w=400&amp;h=500&amp;fit=crop&amp;crop=top" alt="Embroidered Anarkali Kurti Set" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy">
+                    <span class="absolute top-3 left-3 hero-gradient text-primary-foreground text-xs font-bold px-2.5 py-1 rounded-full">-29%</span>
+                    <!-- <div class="absolute inset-0 bg-foreground/0 group-hover:bg-foreground/20 transition-colors duration-300 flex items-center justify-center gap-2 opacity-0 group-hover:opacity-100">
+                        <button class="w-10 h-10 rounded-full bg-background text-foreground flex items-center justify-center hover:bg-primary hover:text-primary-foreground transition-colors">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-shopping-cart w-4 h-4">
+                                <circle cx="8" cy="21" r="1"></circle>
+                                <circle cx="19" cy="21" r="1"></circle>
+                                <path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"></path>
+                            </svg>
+                        </button>
+                        <span class="w-10 h-10 rounded-full bg-background text-foreground flex items-center justify-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-eye w-4 h-4">
+                                <path d="M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0"></path>
+                                <circle cx="12" cy="12" r="3"></circle>
+                            </svg>
+                        </span>
+                    </div> -->
+                </div>
+                <div class="mt-3 space-y-1">
+                    <p class="text-xs text-muted-foreground">Women's Wear</p>
+                    <h3 class="font-medium text-sm text-foreground group-hover:text-primary transition-colors line-clamp-1">Embroidered Anarkali Kurti Set</h3>
+                    <div class="flex items-center gap-2">
+                        <span class="font-semibold text-foreground">NPR 2,499</span>
+                        <span class="text-xs text-muted-foreground line-through">NPR 3,499</span>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+</section>
+
+<section class="container mx-auto px-4 py-16">
+    <div class="text-center mb-10">
+        <h2 class="text-3xl md:text-4xl font-bold text-foreground mb-2">What Our Customers Say</h2>
+        <p class="text-muted-foreground">Real reviews from real customers</p>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6" style="margin-bottom: 50px;">
+        <div class="bg-card rounded-xl p-6 card-shadow">
+            <div class="flex gap-1 mb-3">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-star w-4 h-4 fill-accent text-accent">
+                    <path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"></path>
+                </svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-star w-4 h-4 fill-accent text-accent">
+                    <path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"></path>
+                </svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-star w-4 h-4 fill-accent text-accent">
+                    <path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"></path>
+                </svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-star w-4 h-4 fill-accent text-accent">
+                    <path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"></path>
+                </svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-star w-4 h-4 fill-accent text-accent">
+                    <path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"></path>
+                </svg>
+            </div>
+            <p class="text-foreground text-sm leading-relaxed mb-4">"MeroTrend has the best collection! Fast delivery and great quality. My go-to fashion store."</p>
+            <div><p class="font-semibold text-sm text-foreground">Anisha Rai</p>
+                <p class="text-xs text-muted-foreground">Kathmandu</p>
+            </div>
+        </div>
+        <div class="bg-card rounded-xl p-6 card-shadow">
+            <div class="flex gap-1 mb-3">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-star w-4 h-4 fill-accent text-accent">
+                    <path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"></path>
+                </svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-star w-4 h-4 fill-accent text-accent">
+                    <path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"></path>
+                </svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-star w-4 h-4 fill-accent text-accent">
+                    <path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"></path>
+                </svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-star w-4 h-4 fill-accent text-accent">
+                    <path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"></path>
+                </svg><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-star w-4 h-4 fill-accent text-accent">
+                    <path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"></path>
+                </svg>
+            </div>
+            <p class="text-foreground text-sm leading-relaxed mb-4">"Ordered a jacket and it arrived in just 2 days. The quality exceeded my expectations!"</p>
+            <div>
+                <p class="font-semibold text-sm text-foreground">Bikash Tamang</p>
+                <p class="text-xs text-muted-foreground">Pokhara</p>
+            </div>
+        </div>
+        <div class="bg-card rounded-xl p-6 card-shadow">
+            <div class="flex gap-1 mb-3">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-star w-4 h-4 fill-accent text-accent">
+                    <path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"></path>
+                </svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-star w-4 h-4 fill-accent text-accent">
+                    <path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"></path>
+                </svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-star w-4 h-4 fill-accent text-accent">
+                    <path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"></path>
+                </svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-star w-4 h-4 fill-accent text-accent">
+                    <path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"></path>
+                </svg>
+            </div>
+            <p class="text-foreground text-sm leading-relaxed mb-4">"Love the trendy styles at affordable prices. Customer service is also very responsive."</p>
+            <div><p class="font-semibold text-sm text-foreground">Sunita Devi</p>
+                <p class="text-xs text-muted-foreground">Biratnagar</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="hero-gradient py-16" style="padding: 65px 0;">
+    <div class="container mx-auto px-4 text-center">
+        <h2 class="text-3xl md:text-4xl font-bold text-primary-foreground mb-3">Stay in Trend</h2>
+        <p class="text-primary-foreground/80 mb-6 max-w-md mx-auto">Subscribe to get exclusive offers, new arrivals, and fashion tips delivered to your inbox.</p>
+        <form class="flex gap-2 max-w-md mx-auto">
+            <input type="email" placeholder="Your email address" class="flex-1 px-4 py-3 rounded-lg bg-primary-foreground/20 backdrop-blur-sm text-primary-foreground placeholder:text-primary-foreground/50 border border-primary-foreground/30 focus:outline-none focus:border-primary-foreground/60 text-sm">
+            <button class="bg-foreground text-background px-6 py-3 rounded-lg font-semibold text-sm hover:opacity-90 transition-opacity">Subscribe</button>
+        </form>
+    </div>
+</section>
+
+<footer class="bg-foreground text-background">
+    <div class="container mx-auto px-4 py-12 md:py-16">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12">
+            <div>
+                <h3 class="font-display text-2xl font-bold mb-4">Mero
+                    <span class="text-primary">Trend</span>
+                </h3>
+                <p class="text-background/70 text-sm leading-relaxed mb-4">Your one-stop fashion destination in Nepal. Based in Birtamode, delivering trendy styles across the nation.</p>
+                <div class="flex gap-3">
+                    <a href="#" class="w-9 h-9 rounded-full bg-background/10 flex items-center justify-center hover:bg-primary transition-colors">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-facebook w-4 h-4">
+                            <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+                        </svg>
+                    </a>
+                    <a href="#" class="w-9 h-9 rounded-full bg-background/10 flex items-center justify-center hover:bg-primary transition-colors">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-instagram w-4 h-4">
+                            <rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect>
+                            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                            <line x1="17.5" x2="17.51" y1="6.5" y2="6.5"></line>
+                        </svg>
+                    </a>
+                    <a href="#" class="w-9 h-9 rounded-full bg-background/10 flex items-center justify-center hover:bg-primary transition-colors">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-twitter w-4 h-4">
+                            <path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"></path>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+            <div>
+                <h4 class="font-display font-semibold text-lg mb-4">Quick Links</h4>
+                <ul class="space-y-2 text-sm text-background/70">
+                    <li>
+                        <a class="hover:text-primary transition-colors" href="index.html">Home</a>
+                    </li>
+                    <li>
+                        <a class="hover:text-primary transition-colors" href="shop.html">Shop</a>
+                    </li>
+                    <li>
+                        <a class="hover:text-primary transition-colors" href="about.html">About Us</a>
+                    </li>
+                    <li>
+                        <a class="hover:text-primary transition-colors" href="contact.html">Contact</a>
+                    </li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="font-display font-semibold text-lg mb-4">Policies</h4>
+                <ul class="space-y-2 text-sm text-background/70">
+                    <li>
+                        <a href="#" class="hover:text-primary transition-colors">Privacy Policy</a>
+                    </li>
+                    <li>
+                        <a href="#" class="hover:text-primary transition-colors">Return Policy</a>
+                    </li>
+                    <li>
+                        <a href="#" class="hover:text-primary transition-colors">Terms of Service</a>
+                    </li>
+                    <li>
+                        <a href="#" class="hover:text-primary transition-colors">Shipping Info</a>
+                    </li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="font-display font-semibold text-lg mb-4">Contact Us</h4>
+                <ul class="space-y-3 text-sm text-background/70">
+                    <li class="flex items-center gap-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-map-pin w-4 h-4 text-primary">
+                            <path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"></path>
+                            <circle cx="12" cy="10" r="3"></circle>
+                        </svg> Birtamode, Jhapa, Nepal
+                    </li>
+                    <li class="flex items-center gap-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-phone w-4 h-4 text-primary">
+                            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                        </svg> +977-9800000000
+                    </li>
+                    <li class="flex items-center gap-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-mail w-4 h-4 text-primary">
+                            <rect width="20" height="16" x="2" y="4" rx="2"></rect>
+                            <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+                        </svg> info@merotrend.com
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="border-t border-background/10 mt-10 pt-6 text-center text-sm text-background/50">© 2026 MeroTrend. All rights reserved. Made with ❤️ in Nepal.</div>
+    </div>
+</footer>
+<script>
+  (function () {
+    const mobileMenuToggle = document.getElementById("mobileMenuToggle");
+    const mobileMenu = document.getElementById("mobileMenu");
+    const mobileMenuClose = document.getElementById("mobileMenuClose");
+
+    if (!mobileMenuToggle || !mobileMenu) {
+      return;
+    }
+
+    const setMenuState = (isOpen) => {
+      mobileMenu.classList.toggle("open", isOpen);
+      mobileMenuToggle.setAttribute("aria-expanded", String(isOpen));
+      mobileMenuToggle.classList.toggle("open", isOpen);
+      document.body.style.overflow = isOpen ? "hidden" : "";
+    };
+
+    mobileMenuToggle.addEventListener("click", () => {
+      setMenuState(!mobileMenu.classList.contains("open"));
+    });
+
+    if (mobileMenuClose) {
+      mobileMenuClose.addEventListener("click", () => {
+        setMenuState(false);
+      });
+    }
+
+    document.addEventListener("click", (event) => {
+      if (!mobileMenu.classList.contains("open")) {
+        return;
+      }
+
+      if (!mobileMenu.contains(event.target) && !mobileMenuToggle.contains(event.target)) {
+        setMenuState(false);
+      }
+    });
+  })();
+</script>
 </body>
 </html>
-
-

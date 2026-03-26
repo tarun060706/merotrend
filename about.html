@@ -1,0 +1,995 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About</title>
+</head>
+<style>
+    /* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Body */
+body {
+  font-family: Arial, sans-serif;
+}
+
+/* Header */
+header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: #f3f3f3;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+/* Container */
+.container {
+  max-width: 1200px;
+  margin: auto;
+  padding: 0 20px;
+  /* display: flex; */
+  align-items: center;
+  justify-content: space-between;
+  height: 70px;
+}
+
+/* Logo */
+header a {
+  text-decoration: none;
+}
+
+header .font-display {
+  font-size: 28px;
+  font-weight: bold;
+  color: #222;
+}
+
+/* Gradient text (Trend) */
+.text-gradient {
+  color: #f97316; /* orange */
+}
+
+/* Navbar */
+nav {
+  display: flex;
+  gap: 30px;
+}
+
+nav a {
+  font-size: 14px;
+  color: #666;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+/* Active link */
+nav a:first-child {
+  color: #f97316;
+}
+
+/* Hover */
+nav a:hover {
+  color: #f97316;
+}
+
+/* Right side icons */
+header .flex {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  height: 70px;
+}
+
+/* Cart button */
+header .flex a {
+  padding: 8px;
+  border-radius: 50%;
+  transition: 0.3s;
+}
+
+header .flex a:hover {
+  background: #eaeaea;
+}
+
+/* Mobile menu button */
+button {
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+.header-menu-toggle {
+  display: none;
+  width: 42px;
+  height: 42px;
+  align-items: center;
+  justify-content: center;
+  /* border: 1px solid rgba(17, 24, 39, 0.08); */
+  border-radius: 14px;
+  /* background: rgba(255, 255, 255, 0.96);
+  box-shadow: 0 14px 30px rgba(15, 23, 42, 0.08); */
+  flex-shrink: 0;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+}
+
+.header-menu-toggle-lines {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  position: relative;
+  width: 22px;
+  height: 18px;
+  justify-content: center;
+}
+
+.header-menu-toggle-lines span {
+  display: block;
+  width: 22px;
+  height: 2.5px;
+  border-radius: 999px;
+  background: #4b5563;
+  position: absolute;
+  left: 0;
+  transition: transform 0.24s ease, opacity 0.2s ease, top 0.24s ease;
+}
+
+.header-menu-toggle-lines span:nth-child(1) {
+  top: 0;
+}
+
+.header-menu-toggle-lines span:nth-child(2) {
+  top: 7px;
+}
+
+.header-menu-toggle-lines span:nth-child(3) {
+  top: 14px;
+}
+
+.header-menu-toggle.open .header-menu-toggle-lines span:nth-child(1) {
+  top: 7px;
+  transform: rotate(45deg);
+}
+
+.header-menu-toggle.open .header-menu-toggle-lines span:nth-child(2) {
+  opacity: 0;
+}
+
+.header-menu-toggle.open .header-menu-toggle-lines span:nth-child(3) {
+  top: 7px;
+  transform: rotate(-45deg);
+}
+
+.header-mobile-menu {
+  position: fixed;
+  inset: 0;
+  padding: 12px 12px 20px;
+  background: rgba(241, 245, 249, 0.82);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateX(100%);
+  transition: opacity 0.22s ease, transform 0.28s ease, visibility 0.22s ease;
+  z-index: 120;
+  display: flex;
+  flex-direction: column;
+}
+
+.header-mobile-menu.open {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(0);
+}
+
+.header-mobile-menu a {
+  display: flex;
+  align-items: center;
+  min-height: 48px;
+  padding: 0;
+  color: #475569;
+  text-decoration: none;
+  font-size: 18px;
+  font-weight: 500;
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.header-mobile-menu a:hover {
+  color: #ea580c;
+  transform: translateX(2px);
+}
+
+.menu-panel-shell {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 8px 10px 18px;
+  background: #ffffff;
+  border: 1px solid #dbe4ee;
+  box-shadow: 0 20px 40px rgba(15, 23, 42, 0.08);
+}
+
+.menu-panel-top {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 20px;
+}
+
+.menu-panel-close {
+  width: 40px;
+  height: 40px;
+  border: none;
+  background: transparent;
+  color: #6b7280;
+  font-size: 34px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.menu-panel-links {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 6px 10px 0;
+}
+
+.menu-panel-spacer {
+  flex: 1;
+}
+
+.menu-panel-cta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 54px;
+  margin: 0 8px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #f28a5b, #f07c56);
+  color: #334155 !important;
+  font-size: 17px !important;
+  font-weight: 500 !important;
+  box-shadow: 0 16px 28px rgba(240, 124, 86, 0.24);
+}
+
+.menu-panel-cta:hover {
+  color: #1f2937 !important;
+  transform: none !important;
+}
+
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Body */
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: #f5f5f5;
+}
+
+/* Container */
+.container {
+  max-width: 1280px;
+  margin: auto;
+height: 100%;
+}
+
+/* HERO */
+.hero-gradient {
+  background: linear-gradient(to right, #ff8c42, #ff6a00);
+  padding: 60px 0;
+  text-align: center;
+  height: 200px;
+}
+
+.hero-gradient h1 {
+  font-size: 48px;
+  font-weight: 700;
+  color: white;
+}
+
+.hero-gradient p {
+  color: rgba(255,255,255,0.8);
+  margin-top: 8px;
+}
+
+/* TOP BAR */
+.flex {
+  display: flex;
+}
+
+.justify-between {
+  justify-content: space-between;
+}
+
+.items-center {
+  align-items: center;
+}
+
+.mb-8 {
+  margin-bottom: 32px;
+}
+
+/* SEARCH */
+input {
+  width: 260px;
+  padding: 10px 14px 10px 38px;
+  border-radius: 10px;
+  border: 1px solid #ddd;
+  background: #fff;
+}
+
+input:focus {
+  outline: none;
+  border-color: #ff6a00;
+  box-shadow: 0 0 0 2px rgba(255,106,0,0.2);
+}
+
+/* GRID */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 24px;
+}
+
+/* PRODUCT CARD */
+.group {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* IMAGE BOX */
+.group > div {
+  border-radius: 12px;
+  overflow: hidden;
+  background: #eaeaea;
+  position: relative;
+  height: 260px;
+}
+
+.group img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: 0.4s;
+}
+
+/* HOVER EFFECT */
+.group:hover img {
+  transform: scale(1.07);
+}
+
+/* OVERLAY */
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  opacity: 0;
+  transition: 0.3s;
+}
+
+.group:hover .overlay {
+  background: rgba(0,0,0,0.25);
+  opacity: 1;
+}
+
+/* ICON BUTTON */
+.overlay button,
+.overlay span {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.overlay button:hover {
+  background: #ff6a00;
+  color: white;
+}
+
+/* DISCOUNT BADGE */
+.group span.absolute {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: linear-gradient(to right, #ff8c42, #ff6a00);
+  color: white;
+  font-size: 12px;
+  padding: 5px 10px;
+  border-radius: 20px;
+  font-weight: 600;
+}
+
+/* TEXT */
+.mt-3 {
+  margin-top: 12px;
+}
+
+.text-xs {
+  font-size: 12px;
+  color: #777;
+}
+
+h3 {
+  font-size: 14px;
+  font-weight: 600;
+  margin-top: 4px;
+}
+
+.group:hover h3 {
+  color: #ff6a00;
+}
+
+/* PRICE */
+.flex.gap-2 {
+  gap: 8px;
+  margin-top: 4px;
+}
+
+.line-through {
+  text-decoration: line-through;
+  font-size: 12px;
+  color: #999;
+}
+
+/* RESPONSIVE */
+@media (max-width: 1024px) {
+  .grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  input {
+    width: 180px;
+  }
+
+  nav {
+    display: none;
+  }
+
+  .header-menu-toggle {
+    display: inline-flex;
+  }
+}
+
+body {
+  margin: 0;
+  font-family: 'Georgia', serif;
+  background: #f5f5f5;
+}
+
+/* SECTION */
+.story-section {
+  padding: 80px 20px;
+}
+
+/* CONTAINER */
+.container {
+  max-width: 1100px;
+  margin: auto;
+}
+
+/* TEXT */
+.content {
+  max-width: 700px;
+  margin-bottom: 50px;
+}
+
+.content h1 {
+  font-size: 42px;
+  margin-bottom: 20px;
+  color: #111;
+}
+
+.content p {
+  font-size: 16px;
+  line-height: 1.8;
+  color: #6b7280;
+  margin-bottom: 20px;
+}
+
+/* STATS GRID */
+.stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 25px;
+}
+
+/* CARD */
+.card {
+  background: #fff;
+  padding: 30px;
+  border-radius: 14px;
+  text-align: center;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+}
+
+/* ICON */
+.icon {
+  width: 55px;
+  height: 55px;
+  margin: auto;
+  margin-bottom: 15px;
+  background: linear-gradient(to right, #ff8c42, #ff6a00);
+  color: #fff;
+  font-size: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+}
+
+/* TEXT */
+.card h2 {
+  margin: 10px 0 5px;
+  font-size: 26px;
+  color: #111;
+}
+
+.card p {
+  font-size: 14px;
+  color: #6b7280;
+}
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 500px) {
+  .stats {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+
+/* FOOTER */
+footer {
+  background: #111111;
+  color: #ffffff;
+  width: 100%;
+}
+
+footer .container {
+  max-width: 100%;
+  padding: 64px 100px;
+}
+
+footer .grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 40px;
+}
+
+/* BRAND */
+footer h3 {
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+
+footer h3 span {
+  color: #f97316;
+}
+
+footer p {
+  font-size: 14px;
+  line-height: 1.6;
+  opacity: 0.7;
+  margin-bottom: 16px;
+}
+
+/* SOCIAL ICONS */
+footer .flex {
+  display: flex;
+  gap: 12px;
+}
+
+footer .flex a {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: 0.3s;
+}
+
+footer .flex a:hover {
+  background: #f97316;
+}
+
+/* HEADINGS */
+footer h4 {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+
+/* LINKS */
+footer ul {
+  list-style: none;
+}
+
+footer ul li {
+  margin-bottom: 8px;
+}
+
+footer ul a {
+  text-decoration: none;
+  color: rgba(255,255,255,0.7);
+  font-size: 14px;
+  transition: color 0.3s;
+}
+
+footer ul a:hover {
+  color: #f97316;
+}
+
+/* CONTACT LIST */
+footer .space-y-3 li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+  font-size: 14px;
+  opacity: 0.7;
+}
+
+/* FOOTER BOTTOM */
+footer .footer-bottom {
+  border-top: 1px solid rgba(255,255,255,0.1);
+  margin-top: 40px;
+  padding-top: 24px;
+  text-align: center;
+  font-size: 14px;
+  opacity: 0.5;
+}
+
+/* RESPONSIVE */
+@media (max-width: 1024px) {
+  footer .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  footer .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-gradient form {
+    flex-direction: column;
+  }
+}
+
+html, body {
+  overflow-x: hidden;
+}
+
+img {
+  max-width: 100%;
+}
+
+header .container {
+  display: flex;
+  min-height: 72px;
+  padding: 12px 20px;
+}
+
+.hero-gradient .container {
+  padding: 0 20px;
+}
+
+@media (max-width: 1024px) {
+  footer .container {
+    padding: 48px 32px;
+  }
+}
+
+@media (max-width: 768px) {
+  header .container {
+    min-height: 64px;
+    padding: 12px 16px;
+  }
+
+  header .font-display {
+    font-size: 24px;
+  }
+
+  .hero-gradient {
+    height: auto;
+    padding: 48px 0;
+  }
+
+  .hero-gradient h1 {
+    font-size: 34px;
+  }
+
+  .story-section {
+    padding: 56px 16px;
+  }
+
+  .content h1 {
+    font-size: 34px;
+  }
+
+  .content p {
+    font-size: 15px;
+  }
+
+  footer .container {
+    padding: 40px 20px;
+  }
+}
+
+@media (max-width: 520px) {
+  .stats,
+  footer .grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .card {
+    padding: 24px 18px;
+  }
+
+  .hero-gradient h1,
+  .content h1 {
+    font-size: 28px;
+  }
+}
+</style>
+<body>
+    <header class="sticky top-0 z-50 bg-background/95 backdrop-blur-md border-b border-border">
+        <div class="container mx-auto px-4 flex items-center justify-between h-16 md:h-20">
+            <a class="font-display text-2xl md:text-3xl font-bold tracking-tight text-foreground" href="index.html">Mero
+                <span class="text-gradient">Trend</span>
+            </a>
+            <nav class="hidden md:flex items-center gap-8">
+                <a class="text-sm font-medium tracking-wide transition-colors hover:text-primary text-primary" href="index.html">Home</a>
+                <a class="text-sm font-medium tracking-wide transition-colors hover:text-primary text-muted-foreground" href="shop.html">Shop</a>
+                <a class="text-sm font-medium tracking-wide transition-colors hover:text-primary text-muted-foreground" href="shop.html">Categories</a>
+                <a class="text-sm font-medium tracking-wide transition-colors hover:text-primary text-muted-foreground" href="about.html">About</a>
+                <a class="text-sm font-medium tracking-wide transition-colors hover:text-primary text-muted-foreground" href="contact.html">Contact</a>
+            </nav>
+            <button type="button" class="header-menu-toggle" id="mobileMenuToggle" aria-label="Open navigation menu" aria-expanded="false">
+                <span class="header-menu-toggle-lines">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </span>
+            </button>
+        </div>
+        <div class="header-mobile-menu" id="mobileMenu">
+            <div class="menu-panel-shell">
+                <div class="menu-panel-top">
+                    <button type="button" class="menu-panel-close" id="mobileMenuClose" aria-label="Close navigation menu">×</button>
+                </div>
+                <div class="menu-panel-links">
+                    <a href="index.html">Home</a>
+                    <a href="about.html">About</a>
+                    <a href="shop.html">Shop</a>
+                    <a href="shop.html">Categories</a>
+                    <a href="contact.html">Contact</a>
+                </div>
+                <div class="menu-panel-spacer"></div>
+            </div>
+        </div>
+    </header>
+
+<div class="min-h-screen">
+    <div class="hero-gradient py-12 md:py-16">
+        <div class="container mx-auto px-4 text-center">
+            <h1 class="text-3xl md:text-5xl font-bold text-primary-foreground mb-2">About MeroTrend</h1>
+            <p class="text-primary-foreground/80">Born in Birtamode, built for Nepal. We're on a mission to make trendy fashion accessible to everyone across the country.</p>
+        </div>
+    </div>
+</div>
+
+<section class="story-section">
+
+  <div class="container">
+
+    <!-- TEXT -->
+    <div class="content">
+      <h1>Our Story</h1>
+
+      <p>
+        MeroTrend started with a simple idea — fashion shouldn't be limited by geography.
+        Growing up in Birtamode, Jhapa, we noticed that the latest fashion trends were always
+        concentrated in big cities like Kathmandu.
+      </p>
+
+      <p>
+        We set out to change that. Today, MeroTrend delivers curated, high-quality fashion
+        to all 77 districts of Nepal. From the Terai plains to the Himalayan foothills,
+        we bring trending styles right to your doorstep.
+      </p>
+
+      <p>
+        Our team handpicks every item in our collection — ensuring quality, style,
+        and affordability. Whether you're looking for everyday basics or something
+        special, MeroTrend has you covered.
+      </p>
+    </div>
+
+    <!-- STATS -->
+    <div class="stats">
+
+      <div class="card">
+        <div class="icon">👥</div>
+        <h2>10,000+</h2>
+        <p>Happy Customers</p>
+      </div>
+
+      <div class="card">
+        <div class="icon">🚚</div>
+        <h2>77</h2>
+        <p>Districts Covered</p>
+      </div>
+
+      <div class="card">
+        <div class="icon">❤</div>
+        <h2>500+</h2>
+        <p>Products</p>
+      </div>
+
+      <div class="card">
+        <div class="icon">📍</div>
+        <h2>1</h2>
+        <p>Mission</p>
+      </div>
+
+    </div>
+ 
+    </div>
+</section>
+
+<footer class="bg-foreground text-background">
+    <div class="container mx-auto px-4 py-12 md:py-16">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12">
+            <div>
+                <h3 class="font-display text-2xl font-bold mb-4">Mero
+                    <span class="text-primary">Trend</span>
+                </h3>
+                <p class="text-background/70 text-sm leading-relaxed mb-4">Your one-stop fashion destination in Nepal. Based in Birtamode, delivering trendy styles across the nation.</p>
+                <div class="flex gap-3">
+                    <a href="#" class="w-9 h-9 rounded-full bg-background/10 flex items-center justify-center hover:bg-primary transition-colors">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-facebook w-4 h-4">
+                            <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+                        </svg>
+                    </a>
+                    <a href="#" class="w-9 h-9 rounded-full bg-background/10 flex items-center justify-center hover:bg-primary transition-colors">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-instagram w-4 h-4">
+                            <rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect>
+                            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                            <line x1="17.5" x2="17.51" y1="6.5" y2="6.5"></line>
+                        </svg>
+                    </a>
+                    <a href="#" class="w-9 h-9 rounded-full bg-background/10 flex items-center justify-center hover:bg-primary transition-colors">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-twitter w-4 h-4">
+                            <path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"></path>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+            <div>
+                <h4 class="font-display font-semibold text-lg mb-4">Quick Links</h4>
+                <ul class="space-y-2 text-sm text-background/70">
+                    <li>
+                        <a class="hover:text-primary transition-colors" href="index.html">Home</a>
+                    </li>
+                    <li>
+                        <a class="hover:text-primary transition-colors" href="shop.html">Shop</a>
+                    </li>
+                    <li>
+                        <a class="hover:text-primary transition-colors" href="about.html">About Us</a>
+                    </li>
+                    <li>
+                        <a class="hover:text-primary transition-colors" href="contact.html">Contact</a>
+                    </li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="font-display font-semibold text-lg mb-4">Policies</h4>
+                <ul class="space-y-2 text-sm text-background/70">
+                    <li>
+                        <a href="#" class="hover:text-primary transition-colors">Privacy Policy</a>
+                    </li>
+                    <li>
+                        <a href="#" class="hover:text-primary transition-colors">Return Policy</a>
+                    </li>
+                    <li>
+                        <a href="#" class="hover:text-primary transition-colors">Terms of Service</a>
+                    </li>
+                    <li>
+                        <a href="#" class="hover:text-primary transition-colors">Shipping Info</a>
+                    </li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="font-display font-semibold text-lg mb-4">Contact Us</h4>
+                <ul class="space-y-3 text-sm text-background/70">
+                    <li class="flex items-center gap-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-map-pin w-4 h-4 text-primary">
+                            <path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"></path>
+                            <circle cx="12" cy="10" r="3"></circle>
+                        </svg> Birtamode, Jhapa, Nepal
+                    </li>
+                    <li class="flex items-center gap-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-phone w-4 h-4 text-primary">
+                            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                        </svg> +977-9800000000
+                    </li>
+                    <li class="flex items-center gap-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-mail w-4 h-4 text-primary">
+                            <rect width="20" height="16" x="2" y="4" rx="2"></rect>
+                            <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+                        </svg> info@merotrend.com
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">© 2026 MeroTrend. All rights reserved. Made with ❤️ in Nepal.</div>
+    </div>
+</footer>
+<script>
+  (function () {
+    const mobileMenuToggle = document.getElementById("mobileMenuToggle");
+    const mobileMenu = document.getElementById("mobileMenu");
+    const mobileMenuClose = document.getElementById("mobileMenuClose");
+
+    if (!mobileMenuToggle || !mobileMenu) {
+      return;
+    }
+
+    const setMenuState = (isOpen) => {
+      mobileMenu.classList.toggle("open", isOpen);
+      mobileMenuToggle.setAttribute("aria-expanded", String(isOpen));
+      mobileMenuToggle.classList.toggle("open", isOpen);
+      document.body.style.overflow = isOpen ? "hidden" : "";
+    };
+
+    mobileMenuToggle.addEventListener("click", () => {
+      setMenuState(!mobileMenu.classList.contains("open"));
+    });
+
+    if (mobileMenuClose) {
+      mobileMenuClose.addEventListener("click", () => {
+        setMenuState(false);
+      });
+    }
+
+    document.addEventListener("click", (event) => {
+      if (!mobileMenu.classList.contains("open")) {
+        return;
+      }
+
+      if (!mobileMenu.contains(event.target) && !mobileMenuToggle.contains(event.target)) {
+        setMenuState(false);
+      }
+    });
+  })();
+</script>
+</body>
+</html>
