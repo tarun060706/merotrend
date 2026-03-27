@@ -747,6 +747,8 @@ header .container {
     padding: 40px 16px;
   }
 }
+
+
 </style>
 <body>
     <header class="sticky top-0 z-50 bg-background/95 backdrop-blur-md border-b border-border">
@@ -755,11 +757,11 @@ header .container {
                 <span class="text-gradient">Trend</span>
             </a>
             <nav class="hidden md:flex items-center gap-8">
-                <a class="text-sm font-medium tracking-wide transition-colors hover:text-primary text-primary" href="../frontend/index.html">Home</a>
-                <a class="text-sm font-medium tracking-wide transition-colors hover:text-primary text-muted-foreground" href="../frontend/shop.html">Shop</a>
-                <a class="text-sm font-medium tracking-wide transition-colors hover:text-primary text-muted-foreground" href="../frontend/categories.html">Categories</a>
-                <a class="text-sm font-medium tracking-wide transition-colors hover:text-primary text-muted-foreground" href="../frontend/about.html">About</a>
-                <a class="text-sm font-medium tracking-wide transition-colors hover:text-primary text-muted-foreground" href="../frontend/contact.html">Contact</a>
+                <a class="text-sm font-medium tracking-wide transition-colors hover:text-primary text-primary" href="/frontend/index.html">Home</a>
+                <a class="text-sm font-medium tracking-wide transition-colors hover:text-primary text-muted-foreground" href="/frontend/shop.html">Shop</a>
+                <a class="text-sm font-medium tracking-wide transition-colors hover:text-primary text-muted-foreground" href="/frontend/categories.html">Categories</a>
+                <a class="text-sm font-medium tracking-wide transition-colors hover:text-primary text-muted-foreground" href="/frontend/about.html">About</a>
+                <a class="text-sm font-medium tracking-wide transition-colors hover:text-primary text-muted-foreground" href="/frontend/contact.html">Contact</a>
             </nav>
             <div class="flex items-center gap-3">
                 <button type="button" class="header-menu-toggle" id="mobileMenuToggle" aria-label="Open navigation menu" aria-expanded="false">
@@ -784,14 +786,14 @@ header .container {
                     <button type="button" class="menu-panel-close" id="mobileMenuClose" aria-label="Close navigation menu">×</button>
                 </div>
                 <div class="menu-panel-links">
-                    <a href="../index.html">Home</a>
-                    <a href="../about.html">About</a>
-                    <a href="../shop.html">Shop</a>
-                    <a href="../shop.html">Categories</a>
-                    <a href="../contact.html">Contact</a>
+                    <a href="/frontend/index.html">Home</a>
+                    <a href="/frontend/about.html">About</a>
+                    <a href="/frontend/shop.html">Shop</a>
+                    <a href="/frontend/categories.html">Categories</a>
+                    <a href="/frontend/contact.html">Contact</a>
                 </div>
                 <div class="menu-panel-spacer"></div>
-                <a class="menu-panel-cta" href="../contact.html">Contact Now</a>
+                <a class="menu-panel-cta" href="/frontend/contact.html">Contact Now</a>
             </div>
         </div>
     </header>
@@ -806,7 +808,7 @@ header .container {
     <!-- LEFT IMAGE -->
     <div class="image-box">
       <span class="badge">-20% OFF</span>
-      <img src="https://images.unsplash.com/photo-1564257631407-4deb1f99d992?w=400&h=500&fit=crop&crop=top" alt="">
+      <img src="https://images.unsplash.com/photo-1572804013309-59a88b7e92f1?w=400&h=500&fit=crop&crop=top" alt="">
     </div>
 
     <!-- RIGHT CONTENT -->
@@ -821,8 +823,8 @@ header .container {
       </div>
 
       <div class="price">
-        <span class="new">NPR 2,799</span>
-        <span class="old">NPR 3,999</span>
+        <span class="new">NPR 3,999</span>
+        <span class="old">NPR 4,999</span>
       </div>
 
       <p class="desc">
@@ -859,6 +861,7 @@ header .container {
           <button type="button" class="quantity-btn" id="increaseQuantity">+</button>
         </div>
       </div>
+
       <!-- BUTTONS -->
       <div class="actions">
         <!-- <button type="button" class="cart" id="addToCartButton">🛒 Add to Cart</button> -->
@@ -1128,7 +1131,7 @@ header .container {
         const formattedTotalAmount = "NPR " + totalAmount.toLocaleString();
 
         const message = [
-          "!!!New Order Request",
+          "!!! New Order Request",
           "Customer Name: " + customerName.trim(),
           "Address: " + address.trim(),
           "Pin Number: " + pinNumber.trim(),

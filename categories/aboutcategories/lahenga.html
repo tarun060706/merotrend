@@ -1,0 +1,2106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+          /* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Body */
+body {
+  font-family: Arial, sans-serif;
+}
+
+/* Header */
+header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: #f3f3f3;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+/* Container */
+.container {
+  max-width: 1200px;
+  margin: auto;
+  padding: 10px 20px;
+  /* display: flex; */
+  align-items: center;
+  justify-content: space-between;
+  /* height: 70px; */
+}
+
+/* Logo */
+header a {
+  text-decoration: none;
+}
+
+header .font-display {
+  font-size: 28px;
+  font-weight: bold;
+  color: #222;
+}
+
+/* Gradient text (Trend) */
+.text-gradient {
+  color: #f97316; /* orange */
+}
+
+/* Navbar */
+nav {
+  display: flex;
+  gap: 30px;
+}
+
+nav a {
+  font-size: 14px;
+  color: #666;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+/* Active link */
+nav a:first-child {
+  color: #f97316;
+}
+
+/* Hover */
+nav a:hover {
+  color: #f97316;
+}
+
+/* Right side icons */
+header .flex {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+/* Cart button */
+header .flex a {
+  padding: 8px;
+  transition: 0.3s;
+}
+
+header .flex a:hover {
+  background: transparent;
+}
+
+.navbar-cart {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #6b21a8 !important;
+}
+
+.navbar-cart svg {
+  width: 100px;
+  height: 100px;
+  stroke-width: 1.8;
+  stroke: #6b21a8 !important;
+}
+
+.navbar-menu {
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  padding: 6px;
+  color: #111111 !important;
+}
+
+.navbar-menu svg {
+  width: 36px;
+  height: 36px;
+  stroke-width: 2.2;
+  stroke: #111111 !important;
+}
+
+.navbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.header-menu-toggle {
+  display: none;
+  width: 42px;
+  height: 42px;
+  align-items: center;
+  justify-content: center;
+  /* border: 1px solid rgba(17, 24, 39, 0.08); */
+  border-radius: 14px;
+  /* background: rgba(255, 255, 255, 0.96); */
+  /* box-shadow: 0 14px 30px rgba(15, 23, 42, 0.08); */
+  flex-shrink: 0;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+}
+
+.header-menu-toggle-lines {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  position: relative;
+  width: 22px;
+  height: 18px;
+  justify-content: center;
+}
+
+.header-menu-toggle-lines span {
+  display: block;
+  width: 22px;
+  height: 2.5px;
+  border-radius: 999px;
+  background: #4b5563;
+  position: absolute;
+  left: 0;
+  transition: transform 0.24s ease, opacity 0.2s ease, top 0.24s ease;
+}
+
+.header-menu-toggle-lines span:nth-child(1) {
+  top: 0;
+}
+
+.header-menu-toggle-lines span:nth-child(2) {
+  top: 7px;
+}
+
+.header-menu-toggle-lines span:nth-child(3) {
+  top: 14px;
+}
+
+.header-menu-toggle.open .header-menu-toggle-lines span:nth-child(1) {
+  top: 7px;
+  transform: rotate(45deg);
+}
+
+.header-menu-toggle.open .header-menu-toggle-lines span:nth-child(2) {
+  opacity: 0;
+}
+
+.header-menu-toggle.open .header-menu-toggle-lines span:nth-child(3) {
+  top: 7px;
+  transform: rotate(-45deg);
+}
+
+.header-mobile-menu {
+  position: fixed;
+  inset: 0;
+  padding: 12px 12px 20px;
+  background: rgba(241, 245, 249, 0.82);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateX(100%);
+  transition: opacity 0.22s ease, transform 0.28s ease, visibility 0.22s ease;
+  z-index: 120;
+  display: flex;
+  flex-direction: column;
+}
+
+.header-mobile-menu.open {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(0);
+}
+
+.header-mobile-menu a {
+  display: flex;
+  align-items: center;
+  min-height: 48px;
+  padding: 0;
+  color: #475569;
+  text-decoration: none;
+  font-size: 18px;
+  font-weight: 500;
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.header-mobile-menu a:hover {
+  color: #ea580c;
+  transform: translateX(2px);
+}
+
+.menu-panel-shell {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 8px 10px 18px;
+  background: #ffffff;
+  border: 1px solid #dbe4ee;
+  box-shadow: 0 20px 40px rgba(15, 23, 42, 0.08);
+}
+
+.menu-panel-top {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 20px;
+}
+
+.menu-panel-close {
+  width: 40px;
+  height: 40px;
+  border: none;
+  background: transparent;
+  color: #6b7280;
+  font-size: 34px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.menu-panel-links {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 6px 10px 0;
+}
+
+.menu-panel-spacer {
+  flex: 1;
+}
+
+.menu-panel-cta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 54px;
+  margin: 0 8px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #f28a5b, #f07c56);
+  color: #334155 !important;
+  font-size: 17px !important;
+  font-weight: 500 !important;
+  box-shadow: 0 16px 28px rgba(240, 124, 86, 0.24);
+}
+
+.menu-panel-cta:hover {
+  color: #1f2937 !important;
+  transform: none !important;
+}
+
+
+/* Mobile menu button */
+button {
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+/* Hide mobile button on desktop */
+@media (min-width: 768px) {
+  button {
+    /* display: none; */
+  }
+}
+
+/* Hide nav on mobile */
+@media (max-width: 767px) {
+  nav {
+    display: none;
+  }
+
+  .header-menu-toggle {
+    display: inline-flex;
+  }
+}
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #eef3fb;
+            color: #14213d;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        button,
+        input {
+            font: inherit;
+        }
+
+        .bg-secondary {
+            background: #eef3fb;
+            min-height: 100vh;
+        }
+
+        .container {
+            width: min(1720px, calc(100% - 64px));
+            margin: 0 auto;
+        }
+
+        .px-4 {
+            padding-left: 0;
+            padding-right: 0;
+        }
+
+        .py-8 {
+            padding-top: 24px;
+            padding-bottom: 40px;
+        }
+
+        .mb-8 {
+            margin-bottom: 34px;
+        }
+
+        .text-left {
+            text-align: left;
+        }
+
+        .font-headline {
+            letter-spacing: -0.03em;
+        }
+
+        .text-3xl,
+        .md\:text-4xl {
+            font-size: 58px;
+            line-height: 1;
+            font-weight: 800;
+            color: #001b44;
+        }
+
+        .grid {
+            display: grid;
+        }
+
+        .grid-cols-1 {
+            grid-template-columns: minmax(0, 1fr);
+        }
+
+        .gap-8 {
+            gap: 38px;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .md\:col-span-1,
+        .md\:col-span-3 {
+            min-width: 0;
+        }
+
+        .sticky {
+            position: sticky;
+        }
+
+        .top-24 {
+            top: 24px;
+        }
+
+        .rounded-lg {
+            border-radius: 22px;
+        }
+
+        .rounded-md {
+            border-radius: 14px;
+        }
+
+        .rounded-full {
+            border-radius: 999px;
+        }
+
+        .bg-background {
+            background: #ffffff;
+        }
+
+        .p-6 {
+            padding: 30px;
+        }
+
+        .shadow-sm {
+            box-shadow: 0 10px 30px rgba(15, 23, 42, 0.06);
+        }
+
+        .h-\[calc\(100vh-7rem\)\] {
+            height: calc(100vh - 7rem);
+        }
+
+        .flex,
+        .inline-flex {
+            display: flex;
+        }
+
+        .inline-flex {
+            display: inline-flex;
+        }
+
+        .flex-1 {
+            flex: 1;
+        }
+
+        .flex-col {
+            flex-direction: column;
+        }
+
+        .min-h-0 {
+            min-height: 0;
+        }
+
+        .items-center {
+            align-items: center;
+        }
+
+        .justify-between {
+            justify-content: space-between;
+        }
+
+        .justify-start {
+            justify-content: flex-start;
+        }
+
+        .justify-center {
+            justify-content: center;
+        }
+
+        .gap-2 {
+            gap: 8px;
+        }
+
+        .gap-4 {
+            gap: 20px;
+        }
+
+        .mt-4 {
+            margin-top: 18px;
+        }
+
+        .mt-8 {
+            margin-top: 34px;
+        }
+
+        .mb-4 {
+            margin-bottom: 16px;
+        }
+
+        .mb-2 {
+            margin-bottom: 10px;
+        }
+
+        .pt-0 {
+            padding-top: 0;
+        }
+
+        .pt-2 {
+            padding-top: 10px;
+        }
+
+        .pb-4 {
+            padding-bottom: 18px;
+        }
+
+        .py-4 {
+            padding-top: 22px;
+            padding-bottom: 22px;
+        }
+
+        .w-full {
+            width: 100%;
+        }
+
+        .overflow-y-auto {
+            overflow-y: auto;
+        }
+
+        .overflow-hidden {
+            overflow: hidden;
+        }
+
+        .pr-4 {
+            padding-right: 0;
+        }
+
+        .-mr-4 {
+            margin-right: 0;
+        }
+
+        .h-full {
+            height: 100%;
+        }
+
+        .border-b {
+            border-bottom: 1px solid #d9e2f1;
+        }
+
+        .text-lg {
+            font-size: 17px;
+            font-weight: 700;
+        }
+
+        .font-semibold,
+        .text-sm.font-medium,
+        .text-sm.font-semibold {
+            font-weight: 600;
+        }
+
+        .text-sm {
+            font-size: 16px;
+            line-height: 1.45;
+        }
+
+        .text-xs {
+            font-size: 13px;
+        }
+
+        .text-muted-foreground,
+        .placeholder\:text-muted-foreground::placeholder {
+            color: #637896;
+        }
+
+        .relative {
+            position: relative;
+        }
+
+        .absolute {
+            position: absolute;
+        }
+
+        .left-3 {
+            left: 18px;
+        }
+
+        .top-1\/2 {
+            top: 50%;
+        }
+
+        .-translate-y-1\/2 {
+            transform: translateY(-50%);
+        }
+
+        .left-1\/2 {
+            left: 50%;
+        }
+
+        .-translate-x-1\/2 {
+            transform: translateX(-50%);
+        }
+
+        .top-2 {
+            top: 10px;
+        }
+
+        .left-2 {
+            left: 10px;
+        }
+
+        .bottom-2 {
+            bottom: 10px;
+        }
+
+        .right-2 {
+            right: 10px;
+        }
+
+        .h-10 {
+            height: 52px;
+        }
+
+        .h-9 {
+            height: 44px;
+        }
+
+        .h-8 {
+            height: 38px;
+        }
+
+        .w-8 {
+            width: 38px;
+        }
+
+        .w-9 {
+            width: 42px;
+        }
+
+        .p-0 {
+            padding: 0;
+        }
+
+        .px-4 {
+            padding-left: 18px;
+            padding-right: 18px;
+        }
+
+        .py-2 {
+            padding-top: 10px;
+            padding-bottom: 10px;
+        }
+
+        .pl-10 {
+            padding-left: 52px;
+        }
+
+        .border,
+        .border-input {
+            border: 1px solid #d4deee;
+        }
+
+        .ring-offset-background,
+        .focus-visible\:ring-offset-2,
+        .focus-visible\:ring-2,
+        .focus-visible\:ring-ring {
+            outline: none;
+        }
+
+        .transition-colors,
+        .transition-all,
+        .transition-opacity,
+        .duration-200,
+        .duration-300 {
+            transition: all 0.25s ease;
+        }
+
+        .hover\:underline:hover {
+            text-decoration: none;
+        }
+
+        .hover\:bg-accent:hover,
+        .hover\:bg-secondary\/80:hover {
+            background: #eef4ff;
+        }
+
+        .hover\:text-accent-foreground:hover {
+            color: #14213d;
+        }
+
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+
+        .overflow-hidden.text-sm.transition-all {
+            overflow: visible;
+        }
+
+        .flex.justify-between.text-xs.text-muted-foreground {
+            font-size: 15px;
+        }
+
+        [data-orientation="vertical"] > .border-b:last-child {
+            border-bottom: 1px solid #dfe7f3;
+        }
+
+        .items-center.justify-between > .text-lg {
+            font-size: 21px;
+            font-weight: 800;
+            color: #111827;
+        }
+
+        .flex.flex-1.items-center.justify-between.py-4.transition-all.hover\:underline.\[\&amp\;\[data-state\=open\]\>svg\]\:rotate-180.text-sm.font-medium {
+            width: 100%;
+            padding-left: 0;
+            padding-right: 0;
+            background: transparent;
+            border: 0;
+            color: #111827;
+            cursor: pointer;
+        }
+
+        .relative.flex.w-full.touch-none.select-none.items-center.mb-2 {
+            margin-top: 12px;
+            margin-bottom: 10px;
+        }
+
+        .relative.h-2.w-full.grow.overflow-hidden.rounded-full.bg-secondary {
+            height: 8px;
+            background: #1d2640;
+            border-radius: 999px;
+        }
+
+        .absolute.h-full.bg-primary {
+            background: #1d2640;
+        }
+
+        [role="slider"] {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            border: 2px solid #1d2640;
+            background: #f8fbff;
+            box-shadow: 0 2px 8px rgba(15, 23, 42, 0.14);
+        }
+
+        .lucide {
+            width: 18px;
+            height: 18px;
+            stroke: #0f172a;
+        }
+
+        .md\:col-span-3 > .flex.items-center.gap-4.mb-4 {
+            margin-bottom: 18px;
+            align-items: center;
+        }
+
+        .md\:hidden {
+            display: none;
+        }
+
+        input[type="search"] {
+            width: 100%;
+            height: 52px;
+            border-radius: 999px;
+            border: 1px solid #d4deee;
+            background: #ffffff;
+            color: #23416a;
+            font-size: 17px;
+            padding-right: 20px;
+            box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.4);
+        }
+
+        .text-sm.text-muted-foreground.mb-4 {
+            margin-bottom: 18px;
+            font-size: 19px;
+            color: #5a7293;
+        }
+
+        .grid.grid-cols-2 {
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 34px 38px;
+        }
+
+        .group.relative > a.block {
+            display: block;
+        }
+
+        .relative.overflow-hidden.rounded-md {
+            border-radius: 8px;
+            background: #d8dde7;
+        }
+
+        .aspect-\[3\/4\] {
+            aspect-ratio: 3 / 4;
+        }
+
+        .w-full.object-cover {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .group:hover .group-hover\:opacity-100 {
+            opacity: 1;
+        }
+
+        .opacity-0 {
+            opacity: 0;
+        }
+
+        .z-10 {
+            z-index: 10;
+        }
+
+        .bg-primary {
+            background: #102349;
+        }
+
+        .text-primary-foreground {
+            color: #ffffff;
+        }
+
+        .font-bold {
+            font-weight: 800;
+        }
+
+        .px-2 {
+            padding-left: 10px;
+            padding-right: 10px;
+        }
+
+        .py-1 {
+            padding-top: 6px;
+            padding-bottom: 6px;
+        }
+
+        .bg-secondary.text-secondary-foreground {
+            background: rgba(255, 255, 255, 0.92);
+            color: #102349;
+        }
+
+        .w-11\/12 {
+            width: calc(100% - 20px);
+        }
+
+        .md\:inline-flex {
+            display: inline-flex;
+        }
+
+        .pt-2.text-left h3 {
+            margin: 0;
+            font-size: 18px;
+            line-height: 1.35;
+            color: #1a2437;
+        }
+
+        .flex.items-baseline.justify-start.gap-1.mt-1 {
+            display: flex;
+            align-items: baseline;
+            gap: 6px;
+            margin-top: 6px;
+        }
+
+        .text-sm.font-semibold.text-foreground {
+            font-size: 17px;
+            font-weight: 800;
+            color: #111827;
+        }
+
+        .text-xs.text-muted-foreground.line-through {
+            font-size: 14px;
+            text-decoration: line-through;
+            color: #7c8faa;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        .whitespace-nowrap {
+            white-space: nowrap;
+        }
+
+        .justify-start.mt-4 {
+            justify-content: center;
+            margin-top: 28px;
+            border: 0;
+            background: transparent;
+            color: #111827;
+            padding-left: 0;
+            padding-right: 0;
+            font-size: 18px;
+        }
+
+        .filters-card {
+            border-radius: 18px;
+            padding: 34px 30px 28px;
+            box-shadow: none;
+        }
+
+        .filters-panel {
+            overflow: hidden;
+        }
+
+        .filters-heading {
+            margin-bottom: 10px;
+        }
+
+        .filters-heading .lucide {
+            width: 20px;
+            height: 20px;
+        }
+
+        .filters-heading-main {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .mobile-filter-close {
+            display: none;
+            width: 38px;
+            height: 38px;
+            border-radius: 999px;
+            align-items: center;
+            justify-content: center;
+            background: #eef3fb;
+            color: #172033;
+            font-size: 24px;
+            line-height: 1;
+        }
+
+        .filter-row {
+            border-bottom: 1px solid #dfe7f3;
+        }
+
+        .filter-row:last-child {
+            border-bottom: 1px solid #dfe7f3;
+        }
+
+        .filter-trigger {
+            width: 100%;
+            padding: 22px 0;
+            border: 0;
+            background: transparent;
+            color: #111827;
+            font-size: 17px;
+            font-weight: 500;
+            cursor: pointer;
+        }
+
+        .filter-open {
+            padding-bottom: 16px;
+        }
+
+        .price-panel {
+            padding-top: 2px;
+        }
+
+        .price-slider {
+            position: relative;
+            width: 100%;
+            height: 26px;
+            margin-bottom: 10px;
+        }
+
+        .price-track {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            width: 100%;
+            height: 9px;
+            border-radius: 999px;
+            background: #1e2439;
+            transform: translateY(-50%);
+        }
+
+        .price-thumb {
+            position: absolute;
+            top: 50%;
+            right: -1px;
+            width: 26px;
+            height: 26px;
+            border: 3px solid #1e2439;
+            border-radius: 50%;
+            background: #f8fbff;
+            transform: translateY(-50%);
+        }
+
+        .price-range-input {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            opacity: 0;
+            cursor: pointer;
+        }
+
+        .price-values {
+            display: flex;
+            justify-content: space-between;
+            font-size: 15px;
+            color: #687d9a;
+        }
+
+        .filter-panel {
+            padding: 0 0 20px;
+        }
+
+        .filter-options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            padding-top: 4px;
+        }
+
+        .filter-option {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 12px;
+            border: 1px solid #d7e0ee;
+            border-radius: 999px;
+            background: #f8fbff;
+            color: #23344d;
+            font-size: 14px;
+            line-height: 1;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .filter-option input {
+            margin: 0;
+            accent-color: #1e2439;
+        }
+
+        .filter-option.active {
+            border-color: #1e2439;
+            background: #1e2439;
+            color: #ffffff;
+        }
+
+        .filter-option.active input {
+            accent-color: #ffffff;
+        }
+
+        .is-hidden {
+            display: none !important;
+        }
+
+        .empty-products {
+            grid-column: 1 / -1;
+            padding: 36px 24px;
+            border: 1px dashed #ccd8eb;
+            border-radius: 18px;
+            background: rgba(255, 255, 255, 0.65);
+            text-align: center;
+            color: #5a7293;
+            font-size: 16px;
+        }
+
+        .clear-filters-btn {
+            justify-content: flex-start;
+            margin-top: 32px;
+            padding: 0;
+            height: auto;
+            border: 0;
+            background: transparent;
+            color: #111827;
+            font-size: 18px;
+            font-weight: 500;
+        }
+
+        .mt-8.text-center button {
+            min-width: 148px;
+            height: 48px;
+            border-radius: 999px;
+            border: 1px solid #cfd9ea;
+            background: #ffffff;
+            color: #173056;
+        }
+
+        @media (min-width: 768px) {
+            .md\:py-12 {
+                padding-top: 10px;
+                padding-bottom: 48px;
+            }
+
+            .md\:flex {
+                display: flex;
+            }
+
+            .md\:grid-cols-4 {
+                grid-template-columns: 400px minmax(0, 1fr);
+            }
+
+            .md\:block {
+                display: block;
+            }
+
+            .md\:col-span-1 {
+                grid-column: span 1 / span 1;
+            }
+
+            .md\:col-span-3 {
+                grid-column: span 1 / span 1;
+            }
+
+            .md\:hidden {
+                display: none;
+            }
+        }
+
+        @media (max-width: 767px) {
+            .container {
+                width: calc(100% - 28px);
+            }
+
+            .py-8,
+            .md\:py-12 {
+                padding-top: 20px;
+                padding-bottom: 32px;
+            }
+
+            .text-3xl,
+            .md\:text-4xl {
+                font-size: 38px;
+            }
+
+            .hidden.md\:block {
+                display: none;
+            }
+
+            .md\:hidden {
+                display: block;
+            }
+
+            .mobile-filter-trigger {
+                height: 48px;
+                padding: 0 16px;
+                border-radius: 999px;
+                border: 1px solid #d4deee;
+                background: #ffffff;
+                color: #173056;
+                box-shadow: 0 10px 24px rgba(15, 23, 42, 0.05);
+            }
+
+            #filterSidebar {
+                display: none;
+            }
+
+            #filterSidebar.mobile-open {
+                position: fixed;
+                inset: 0;
+                z-index: 140;
+                display: block !important;
+                padding: 12px;
+                background: rgba(15, 23, 42, 0.28);
+            }
+
+            #filterSidebar.mobile-open .sticky {
+                position: relative;
+                top: 0;
+                height: 100%;
+                max-height: 100%;
+                border-radius: 24px;
+                padding: 22px 18px 24px;
+                overflow-y: auto;
+            }
+
+            #filterSidebar.mobile-open .filters-panel {
+                min-height: 100%;
+            }
+
+            #filterSidebar.mobile-open .filters-heading {
+                position: sticky;
+                top: 0;
+                z-index: 2;
+                padding-bottom: 8px;
+                background: #ffffff;
+            }
+
+            #filterSidebar.mobile-open .mobile-filter-close {
+                display: inline-flex;
+            }
+
+            #filterSidebar.mobile-open .filters-heading > .inline-flex {
+                display: none;
+            }
+
+            #filterSidebar.mobile-open .overflow-y-auto {
+                overflow: visible;
+            }
+
+            .grid.grid-cols-2 {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 22px 16px;
+            }
+
+            .gap-8 {
+                gap: 24px;
+            }
+
+            .text-sm.text-muted-foreground.mb-4 {
+                font-size: 16px;
+            }
+
+            .md\:col-span-3 > .flex.items-center.gap-4.mb-4 {
+                gap: 12px;
+            }
+
+            .text-sm {
+                font-size: 14px;
+            }
+
+            .pt-2.text-left h3 {
+                font-size: 15px;
+            }
+
+            .text-sm.font-semibold.text-foreground {
+                font-size: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="sticky top-0 z-50 bg-background/95 backdrop-blur-md border-b border-border">
+        <div class="container mx-auto px-4 flex items-center justify-between h-16 md:h-20">
+            <a class="font-display text-2xl md:text-3xl font-bold tracking-tight text-foreground" href="../index.html">Mero
+                <span class="text-gradient">Trend</span>
+            </a>
+            <nav class="hidden md:flex items-center gap-8">
+                <a class="text-sm font-medium tracking-wide transition-colors hover:text-primary text-primary" href="../index.html">Home</a>
+                <a class="text-sm font-medium tracking-wide transition-colors hover:text-primary text-muted-foreground" href="../shop.html">Shop</a>
+                <a class="text-sm font-medium tracking-wide transition-colors hover:text-primary text-muted-foreground" href="../categories.html">Categories</a>
+                <a class="text-sm font-medium tracking-wide transition-colors hover:text-primary text-muted-foreground" href="../about.html">About</a>
+                <a class="text-sm font-medium tracking-wide transition-colors hover:text-primary text-muted-foreground" href="../contact.html">Contact</a>
+            </nav>
+            <button type="button" class="header-menu-toggle" id="mobileMenuToggle" aria-label="Open navigation menu" aria-expanded="false">
+                <span class="header-menu-toggle-lines">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </span>
+            </button>
+        </div>
+        <div class="header-mobile-menu" id="mobileMenu">
+            <div class="menu-panel-shell">
+                <div class="menu-panel-top">
+                    <button type="button" class="menu-panel-close" id="mobileMenuClose" aria-label="Close navigation menu">×</button>
+                </div>
+                <div class="menu-panel-links">
+                    <a href="../index.html">Home</a>
+                    <a href="../about.html">About</a>
+                    <a href="../shop.html">Shop</a>
+                    <a href="../categories.html">Categories</a>
+                    <a href="../contact.html">Contact</a>
+                </div>
+                <div class="menu-panel-spacer"></div>
+            </div>
+        </div>
+    </header>
+
+    <main class="flex-1 bg-secondary">
+        <div class="container mx-auto px-4 py-8 md:py-12">
+            <div class="mb-8 text-left">
+                <h1 class="font-headline text-3xl font-bold md:text-4xl">lahenga</h1>
+            </div>
+            <div class="grid grid-cols-1 gap-8 md:grid-cols-4">
+                <aside class="hidden md:block md:col-span-1" id="filterSidebar">
+                    <div class="sticky top-24 rounded-lg bg-background p-6 shadow-sm h-[calc(100vh-7rem)] flex flex-col filters-card">
+                        <div data-state="open" class="flex-1 flex flex-col min-h-0 filters-panel">
+                            <div class="flex items-center justify-between filters-heading">
+                                <div class="filters-heading-main">
+                                    <button type="button" class="mobile-filter-close" id="mobileFilterClose" aria-label="Close filters">×</button>
+                                    <h2 class="text-lg font-semibold">Filters</h2>
+                                </div>
+                                <button class="inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 hover:bg-accent hover:text-accent-foreground h-9 rounded-md w-9 p-0" type="button" aria-controls="radix-_r_b_" aria-expanded="true" data-state="open">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevrons-up-down h-4 w-4"><path d="m7 15 5 5 5-5"></path>
+                                        <path d="m7 9 5-5 5 5"></path>
+                                    </svg>
+                                    <span class="sr-only">Toggle filters</span>
+                                </button>
+                            </div>
+                            <div data-state="open" id="radix-_r_b_" class="mt-4 data-[state=closed]:mt-0 flex-1 min-h-0" style="transition-duration: 0s; animation-name: none; --radix-collapsible-content-height: 517.6000366210938px; --radix-collapsible-content-width: 270px;">
+                                <div class="overflow-y-auto pr-4 -mr-4 h-full">
+                                    <div class="w-full" data-orientation="vertical">
+                                        <div data-state="open" data-orientation="vertical" class="filter-row filter-open">
+                                            <h3 data-orientation="vertical" data-state="open" class="flex">
+                                                <button type="button" aria-controls="radix-_r_d_" aria-expanded="true" data-state="open" data-orientation="vertical" id="radix-_r_c_" class="flex flex-1 items-center justify-between py-4 transition-all hover:underline [&amp;[data-state=open]&gt;svg]:rotate-180 text-sm font-medium filter-trigger" data-radix-collection-item="">Price
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-down h-4 w-4 shrink-0 transition-transform duration-200">
+                                                        <path d="m6 9 6 6 6-6"></path>
+                                                    </svg>
+                                                </button>
+                                            </h3>
+                                            <!-- <div data-state="open" id="radix-_r_d_" role="region" aria-labelledby="radix-_r_c_" data-orientation="vertical" class="overflow-hidden text-sm transition-all data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down" style="--radix-accordion-content-height: var(--radix-collapsible-content-height); --radix-accordion-content-width: var(--radix-collapsible-content-width); transition-duration: 0s; animation-name: none; --radix-collapsible-content-height: 56px; --radix-collapsible-content-width: 270px;">
+                                                <div class="pb-4 pt-0">
+                                                    <div class="pt-2">
+                                                        <span dir="ltr" data-orientation="horizontal" aria-disabled="false" class="relative flex w-full touch-none select-none items-center mb-2" style="--radix-slider-thumb-transform: translateX(-50%);">
+                                                            <span data-orientation="horizontal" class="relative h-2 w-full grow overflow-hidden rounded-full bg-secondary">
+                                                                <span data-orientation="horizontal" class="absolute h-full bg-primary" style="left: 0%; right: 0%;"></span>
+                                                            </span>
+                                                            <span style="transform: var(--radix-slider-thumb-transform); position: absolute; left: calc(100% - 10px);">
+                                                                <span role="slider" aria-valuemin="0" aria-valuemax="549" aria-orientation="horizontal" data-orientation="horizontal" tabindex="0" class="block h-5 w-5 rounded-full border-2 border-primary bg-background ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50" data-radix-collection-item="" aria-valuenow="549" style=""></span>
+                                                            </span>
+                                                        </span>
+                                                        <div class="flex justify-between text-xs text-muted-foreground">
+                                                            <span>₹0</span>
+                                                            <span>₹549</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div> -->
+                                            <div data-state="open" id="radix-_r_d_" role="region" aria-labelledby="radix-_r_c_" data-orientation="vertical" class="price-panel">
+                                                <div class="price-slider">
+                                                    <div class="price-track"></div>
+                                                    <div class="price-thumb" aria-hidden="true"></div>
+                                                    <input class="price-range-input" id="priceRange" type="range" min="0" max="549" value="549">
+                                                </div>
+                                                <div class="price-values">
+                                                    <span id="priceMinLabel">&#8377;0</span>
+                                                    <span id="priceMaxLabel">&#8377;549</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- <div data-state="closed" data-orientation="vertical" class="border-b">
+                                            <h3 data-orientation="vertical" data-state="closed" class="flex">
+                                                <button type="button" aria-controls="radix-_r_f_" aria-expanded="false" data-state="closed" data-orientation="vertical" id="radix-_r_e_" class="flex flex-1 items-center justify-between py-4 transition-all hover:underline [&amp;[data-state=open]&gt;svg]:rotate-180 text-sm font-medium" data-radix-collection-item="">Gender
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-down h-4 w-4 shrink-0 transition-transform duration-200">
+                                                        <path d="m6 9 6 6 6-6"></path>
+                                                    </svg>
+                                                </button>
+                                            </h3>
+                                            <div data-state="closed" id="radix-_r_f_" hidden="" role="region" aria-labelledby="radix-_r_e_" data-orientation="vertical" class="overflow-hidden text-sm transition-all data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down" style="--radix-accordion-content-height: var(--radix-collapsible-content-height); --radix-accordion-content-width: var(--radix-collapsible-content-width);"></div>
+                                        </div> -->
+                                        <div data-state="closed" data-orientation="vertical" class="filter-row">
+                                            <h3 data-orientation="vertical" data-state="closed" class="flex">
+                                                <button type="button" aria-controls="radix-_r_h_" aria-expanded="false" data-state="closed" data-orientation="vertical" id="radix-_r_g_" class="flex flex-1 items-center justify-between py-4 transition-all text-sm font-medium filter-trigger" data-radix-collection-item="">Colors
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-down h-4 w-4 shrink-0 transition-transform duration-200">
+                                                        <path d="m6 9 6 6 6-6"></path>
+                                                    </svg>
+                                                </button>
+                                            </h3>
+                                            <div data-state="closed" id="radix-_r_h_" hidden="" role="region" aria-labelledby="radix-_r_g_" data-orientation="vertical" class="filter-panel">
+                                                <div class="filter-options" data-filter-group="color"></div>
+                                            </div>
+                                        </div>
+                                        <div data-state="closed" data-orientation="vertical" class="filter-row">
+                                            <h3 data-orientation="vertical" data-state="closed" class="flex">
+                                                <button type="button" aria-controls="radix-_r_j_" aria-expanded="false" data-state="closed" data-orientation="vertical" id="radix-_r_i_" class="flex flex-1 items-center justify-between py-4 transition-all text-sm font-medium filter-trigger" data-radix-collection-item="">Sizes
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-down h-4 w-4 shrink-0 transition-transform duration-200">
+                                                        <path d="m6 9 6 6 6-6"></path>
+                                                    </svg>
+                                                </button>
+                                            </h3>
+                                            <div data-state="closed" id="radix-_r_j_" hidden="" role="region" aria-labelledby="radix-_r_i_" data-orientation="vertical" class="filter-panel">
+                                                <div class="filter-options" data-filter-group="size"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- <button class="inline-flex items-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 hover:bg-accent hover:text-accent-foreground h-10 px-4 py-2 w-full justify-start mt-4 clear-filters-btn">Clear All Filters</button> -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </aside>
+                <div class="md:col-span-3">
+                    <div class="flex items-center gap-4 mb-4">
+                        <div class="md:hidden">
+                            <button id="mobileFilterToggle" class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-10 px-4 py-2 mobile-filter-trigger" type="button" aria-haspopup="dialog" aria-expanded="false" aria-controls="filterSidebar" data-state="closed">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-filter mr-2 h-4 w-4">
+                                    <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"></polygon>
+                                </svg>Filters
+                            </button>
+                        </div>
+                        <div class="relative w-full">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-search absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground">
+                                <circle cx="11" cy="11" r="8"></circle>
+                                <path d="m21 21-4.3-4.3"></path>
+                            </svg>
+                            <input id="productSearch" class="flex h-10 border border-input px-3 py-2 text-base ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium file:text-foreground placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 md:text-sm w-full rounded-full bg-background pl-10" placeholder="Search products..." type="search" value="">
+                        </div>
+                    </div>
+                    <div id="productCount" class="text-sm text-muted-foreground mb-4">46 products found.</div>
+                    <div id="productGrid" class="grid grid-cols-2 gap-4 md:gap-8 lg:grid-cols-3">
+                        <div class="group relative">
+                            <a class="block" href="/products/2pVyVnkIOS5BLFKFpXuW">
+                                <div class="relative overflow-hidden rounded-md">
+                                    <img alt="Element Tee - M" width="600" height="800" class="aspect-[3/4] w-full object-cover transition-opacity duration-300" loading="eager" decoding="async" src="https://firebasestorage.googleapis.com/v0/b/phu-ilv.firebasestorage.app/o/products%2F4q48TcLKEsws5hRpQLveA6-IMG_0842.webp?alt=media&amp;token=82322a2b-8501-42a0-94cf-7fc8b389eda0">
+                                    <img alt="Element Tee - M - hover view" width="600" height="800" class="hidden md:block absolute inset-0 h-full w-full object-cover opacity-0 transition-opacity duration-300 group-hover:opacity-100" loading="lazy" decoding="async" src="https://firebasestorage.googleapis.com/v0/b/phu-ilv.firebasestorage.app/o/products%2FxaUK5c4t4VzUUaBZgjx7HW-IMG_0844.webp?alt=media&amp;token=a4f5f2be-4722-4bca-9376-57d5792e2caa">
+                                    <div class="absolute top-2 left-2 bg-primary text-primary-foreground text-xs font-bold px-2 py-1 rounded z-10">- 56%</div>
+                                    <!-- <button class="inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 bg-secondary text-secondary-foreground hover:bg-secondary/80 absolute bottom-2 right-2 h-8 w-8 rounded-full md:hidden z-10" aria-label="Add Element Tee - M to cart">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus h-4 w-4">
+                                            <path d="M5 12h14"></path>
+                                            <path d="M12 5v14"></path>
+                                        </svg>
+                                    </button> -->
+                                </div>
+                                <div class="pt-2 text-left">
+                                    <h3 class="truncate text-sm font-semibold">Element Tee - M</h3>
+                                    <div class="flex items-baseline justify-start gap-1 mt-1">
+                                        <p class="text-sm font-semibold text-foreground">₹299.00</p>
+                                        <p class="text-xs text-muted-foreground line-through">₹682.00</p>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="group relative">
+                            <a class="block" href="/products/3tyUNWDFDywUo079Yty6">
+                                <div class="relative overflow-hidden rounded-md">
+                                    <img alt="Originals Gangster Tee - M" width="600" height="800" class="aspect-[3/4] w-full object-cover transition-opacity duration-300" loading="eager" decoding="async" src="https://pub-9b7c945fa745414fb473881d71b87c48.r2.dev/10f05e9b7a7ffb5e35bb5ec92d113232.png">
+                                    <img alt="Originals Gangster Tee - M - hover view" width="600" height="800" class="hidden md:block absolute inset-0 h-full w-full object-cover opacity-0 transition-opacity duration-300 group-hover:opacity-100" loading="lazy" decoding="async" src="https://pub-9b7c945fa745414fb473881d71b87c48.r2.dev/15f8c1f1bb99ebd56498c8741ac88fe6.png">
+                                    <div class="absolute top-2 left-2 bg-primary text-primary-foreground text-xs font-bold px-2 py-1 rounded z-10">- 34%</div>
+                                    <!-- <button class="inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 bg-secondary text-secondary-foreground hover:bg-secondary/80 absolute bottom-2 right-2 h-8 w-8 rounded-full md:hidden z-10" aria-label="Add Originals Gangster Tee - M to cart">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus h-4 w-4">
+                                            <path d="M5 12h14"></path>
+                                            <path d="M12 5v14"></path>
+                                        </svg>
+                                    </button> -->
+                                </div>
+                                <div class="pt-2 text-left">
+                                    <h3 class="truncate text-sm font-semibold">Originals Gangster Tee - M</h3>
+                                    <div class="flex items-baseline justify-start gap-1 mt-1">
+                                        <p class="text-sm font-semibold text-foreground">₹329.00</p>
+                                        <p class="text-xs text-muted-foreground line-through">₹499.00</p>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="group relative">
+                            <a class="block" href="/products/4ODhleonqPEN9WI0uoJz">
+                                <div class="relative overflow-hidden rounded-md">
+                                    <img alt="Merzig Mustangs Tee - L" width="600" height="800" class="aspect-[3/4] w-full object-cover transition-opacity duration-300" loading="eager" decoding="async" src="https://pub-9b7c945fa745414fb473881d71b87c48.r2.dev/767e2c8eadcbcd2592356ceb3ebabdc2.png">
+                                    <img alt="Merzig Mustangs Tee - L - hover view" width="600" height="800" class="hidden md:block absolute inset-0 h-full w-full object-cover opacity-0 transition-opacity duration-300 group-hover:opacity-100" loading="lazy" decoding="async" src="https://pub-9b7c945fa745414fb473881d71b87c48.r2.dev/2f5c4e642a02760263b652443f065fd0.png">
+                                    <div class="absolute top-2 left-2 bg-primary text-primary-foreground text-xs font-bold px-2 py-1 rounded z-10">- 40%</div>
+                                    <!-- <button class="inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 bg-secondary text-secondary-foreground hover:bg-secondary/80 absolute bottom-2 right-2 h-8 w-8 rounded-full md:hidden z-10" aria-label="Add Merzig Mustangs Tee - L to cart">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus h-4 w-4">
+                                            <path d="M5 12h14"></path>
+                                            <path d="M12 5v14"></path>
+                                        </svg>
+                                    </button> -->
+                                </div>
+                                <div class="pt-2 text-left">
+                                    <h3 class="truncate text-sm font-semibold">Merzig Mustangs Tee - L</h3>
+                                    <div class="flex items-baseline justify-start gap-1 mt-1">
+                                        <p class="text-sm font-semibold text-foreground">₹299.00</p>
+                                        <p class="text-xs text-muted-foreground line-through">₹499.00</p>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="group relative">
+                            <a class="block" href="/products/4xjY23uKF1wk3UsibbHb">
+                                <div class="relative overflow-hidden rounded-md">
+                                    <img alt="Delta Pro weight Pompano Tee - M" width="600" height="800" class="aspect-[3/4] w-full object-cover transition-opacity duration-300" loading="lazy" decoding="async" src="https://pub-9b7c945fa745414fb473881d71b87c48.r2.dev/6f0f95aaa4d051aef5baf2fb6fb2b9ea.webp">
+                                    <img alt="Delta Pro weight Pompano Tee - M - hover view" width="600" height="800" class="hidden md:block absolute inset-0 h-full w-full object-cover opacity-0 transition-opacity duration-300 group-hover:opacity-100" loading="lazy" decoding="async" src="https://pub-9b7c945fa745414fb473881d71b87c48.r2.dev/c44eb0f0fc270a771773f40778339b25.webp">
+                                    <div class="absolute top-2 left-2 bg-primary text-primary-foreground text-xs font-bold px-2 py-1 rounded z-10">- 57%</div>
+                                    
+                                    <!-- <button class="inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 bg-secondary text-secondary-foreground hover:bg-secondary/80 absolute bottom-2 right-2 h-8 w-8 rounded-full md:hidden z-10" aria-label="Add Delta Pro weight Pompano Tee - M to cart">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus h-4 w-4">
+                                            <path d="M5 12h14"></path>
+                                            <path d="M12 5v14"></path>
+                                        </svg>
+                                    </button> -->
+                                </div>
+                                <div class="pt-2 text-left">
+                                    <h3 class="truncate text-sm font-semibold">Delta Pro weight Pompano Tee - M</h3>
+                                    <div class="flex items-baseline justify-start gap-1 mt-1">
+                                        <p class="text-sm font-semibold text-foreground">₹299.00</p>
+                                        <p class="text-xs text-muted-foreground line-through">₹699.00</p>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="group relative">
+                            <a class="block" href="/products/64bNlpmQzGE9HixqgqJX">
+                                <div class="relative overflow-hidden rounded-md">
+                                    <img alt="Gildan Tee - S" width="600" height="800" class="aspect-[3/4] w-full object-cover transition-opacity duration-300" loading="lazy" decoding="async" src="https://firebasestorage.googleapis.com/v0/b/phu-ilv.firebasestorage.app/o/products%2F7ZzrswBz1Ud77ZgpXf1KPf-IMG_0880.webp?alt=media&amp;token=ca82fbd9-66f5-4e1f-883e-81096ff00019">
+                                    <img alt="Gildan Tee - S - hover view" width="600" height="800" class="hidden md:block absolute inset-0 h-full w-full object-cover opacity-0 transition-opacity duration-300 group-hover:opacity-100" loading="lazy" decoding="async" src="https://firebasestorage.googleapis.com/v0/b/phu-ilv.firebasestorage.app/o/products%2F3KcJjtikSMXz4skzdb92Pq-IMG_0881.webp?alt=media&amp;token=de3282a5-7ddb-4fc5-88a6-49096a53bc7c">
+                                    <div class="absolute top-2 left-2 bg-primary text-primary-foreground text-xs font-bold px-2 py-1 rounded z-10">- 56%</div>
+                                    
+                                    <!-- <button class="inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 bg-secondary text-secondary-foreground hover:bg-secondary/80 absolute bottom-2 right-2 h-8 w-8 rounded-full md:hidden z-10" aria-label="Add Gildan Tee - S to cart">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus h-4 w-4">
+                                            <path d="M5 12h14"></path>
+                                            <path d="M12 5v14"></path>
+                                        </svg>
+                                    </button> -->
+                                </div>
+                                <div class="pt-2 text-left">
+                                    <h3 class="truncate text-sm font-semibold">Gildan Tee - S</h3>
+                                    <div class="flex items-baseline justify-start gap-1 mt-1">
+                                        <p class="text-sm font-semibold text-foreground">₹349.00</p>
+                                        <p class="text-xs text-muted-foreground line-through">₹789.00</p>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="group relative">
+                            <a class="block" href="/products/C9tC70uMjvl7pbpk90VI">
+                                <div class="relative overflow-hidden rounded-md">
+                                    <img alt="Fanatics Tee - M" width="600" height="800" class="aspect-[3/4] w-full object-cover transition-opacity duration-300" loading="lazy" decoding="async" src="https://firebasestorage.googleapis.com/v0/b/phu-ilv.firebasestorage.app/o/products%2Fq7NtzWH7iWgnTBijA8Hhix-IMG_0856.webp?alt=media&amp;token=17e4e602-122c-44ae-b445-a9e7b83e88c4">
+                                    <img alt="Fanatics Tee - M - hover view" width="600" height="800" class="hidden md:block absolute inset-0 h-full w-full object-cover opacity-0 transition-opacity duration-300 group-hover:opacity-100" loading="lazy" decoding="async" src="https://firebasestorage.googleapis.com/v0/b/phu-ilv.firebasestorage.app/o/products%2F6GS8t6wDcSAc3w4FFRpvK7-IMG_0859.webp?alt=media&amp;token=db5e1388-fcec-4ffe-b3ed-713912bfe1ee">
+                                    <div class="absolute top-2 left-2 bg-primary text-primary-foreground text-xs font-bold px-2 py-1 rounded z-10">- 52%</div>
+                                 
+                                </div>
+                                <div class="pt-2 text-left">
+                                    <h3 class="truncate text-sm font-semibold">Fanatics Tee - M</h3>
+                                    <div class="flex items-baseline justify-start gap-1 mt-1">
+                                        <p class="text-sm font-semibold text-foreground">₹349.00</p>
+                                        <p class="text-xs text-muted-foreground line-through">₹721.00</p>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="group relative">
+                            <a class="block" href="/products/D8lmYKIZb3z9MNagcchs">
+                                <div class="relative overflow-hidden rounded-md">
+                                    <img alt="2 Pac Tee - M" width="600" height="800" class="aspect-[3/4] w-full object-cover transition-opacity duration-300" loading="lazy" decoding="async" src="https://pub-9b7c945fa745414fb473881d71b87c48.r2.dev/6426e6f64fae458e61df571ff78cd5d5.png">
+                                    <img alt="2 Pac Tee - M - hover view" width="600" height="800" class="hidden md:block absolute inset-0 h-full w-full object-cover opacity-0 transition-opacity duration-300 group-hover:opacity-100" loading="lazy" decoding="async" src="https://pub-9b7c945fa745414fb473881d71b87c48.r2.dev/2b802ab054ceb5f592499f2d1f51f765.png">
+                                    <div class="absolute top-2 left-2 bg-primary text-primary-foreground text-xs font-bold px-2 py-1 rounded z-10">- 40%</div>
+                                    
+                                    <!-- <button class="inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 bg-secondary text-secondary-foreground hover:bg-secondary/80 absolute bottom-2 right-2 h-8 w-8 rounded-full md:hidden z-10" aria-label="Add 2 Pac Tee - M to cart">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus h-4 w-4">
+                                            <path d="M5 12h14"></path>
+                                            <path d="M12 5v14"></path>
+                                        </svg>
+                                    </button> -->
+                                </div>
+                                <div class="pt-2 text-left">
+                                    <h3 class="truncate text-sm font-semibold">2 Pac Tee - M</h3>
+                                    <div class="flex items-baseline justify-start gap-1 mt-1">
+                                        <p class="text-sm font-semibold text-foreground">₹299.00</p>
+                                        <p class="text-xs text-muted-foreground line-through">₹499.00</p>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="group relative">
+                            <a class="block" href="/products/DcFmaBgAKJK3RPogFHjn">
+                                <div class="relative overflow-hidden rounded-md">
+                                    <img alt="Alstyle Bar Hop Tee - M" width="600" height="800" class="aspect-[3/4] w-full object-cover transition-opacity duration-300" loading="lazy" decoding="async" src="https://pub-9b7c945fa745414fb473881d71b87c48.r2.dev/4fbcb5d1b2306a7648c9d72061675d7b.png">
+                                    <img alt="Alstyle Bar Hop Tee - M - hover view" width="600" height="800" class="hidden md:block absolute inset-0 h-full w-full object-cover opacity-0 transition-opacity duration-300 group-hover:opacity-100" loading="lazy" decoding="async" src="https://pub-9b7c945fa745414fb473881d71b87c48.r2.dev/95d0d78847842e4ca66c08b92ef7997a.png">
+                                    <div class="absolute top-2 left-2 bg-primary text-primary-foreground text-xs font-bold px-2 py-1 rounded z-10">- 14%</div>
+                                    
+                                    <!-- <button class="inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 bg-secondary text-secondary-foreground hover:bg-secondary/80 absolute bottom-2 right-2 h-8 w-8 rounded-full md:hidden z-10" aria-label="Add Alstyle Bar Hop Tee - M to cart">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus h-4 w-4">
+                                            <path d="M5 12h14"></path>
+                                            <path d="M12 5v14"></path>
+                                        </svg>
+                                    </button> -->
+                                </div>
+                                <div class="pt-2 text-left">
+                                    <h3 class="truncate text-sm font-semibold">Alstyle Bar Hop Tee - M</h3>
+                                    <div class="flex items-baseline justify-start gap-1 mt-1">
+                                        <p class="text-sm font-semibold text-foreground">₹299.00</p>
+                                        <p class="text-xs text-muted-foreground line-through">₹349.00</p>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="group relative">
+                            <a class="block" href="/products/Djdk4boeJDq5khJwgGRk">
+                                <div class="relative overflow-hidden rounded-md">
+                                    <img alt="Fruit &amp; Loom Tee - L" width="600" height="800" class="aspect-[3/4] w-full object-cover transition-opacity duration-300" loading="lazy" decoding="async" src="https://pub-9b7c945fa745414fb473881d71b87c48.r2.dev/38195c32c9b8103cbf074b036cb93ba1.webp">
+                                    <img alt="Fruit &amp; Loom Tee - L - hover view" width="600" height="800" class="hidden md:block absolute inset-0 h-full w-full object-cover opacity-0 transition-opacity duration-300 group-hover:opacity-100" loading="lazy" decoding="async" src="https://pub-9b7c945fa745414fb473881d71b87c48.r2.dev/06aeb9f8539ebafa30aa556a4862ebaa.webp">
+                                    <div class="absolute top-2 left-2 bg-primary text-primary-foreground text-xs font-bold px-2 py-1 rounded z-10">- 40%</div>
+                                    
+                                    <!-- <button class="inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 bg-secondary text-secondary-foreground hover:bg-secondary/80 absolute bottom-2 right-2 h-8 w-8 rounded-full md:hidden z-10" aria-label="Add Fruit &amp; Loom Tee - L to cart">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus h-4 w-4">
+                                            <path d="M5 12h14"></path>
+                                            <path d="M12 5v14"></path>
+                                        </svg>
+                                    </button> -->
+                                </div>
+                                <div class="pt-2 text-left">
+                                    <h3 class="truncate text-sm font-semibold">Fruit &amp; Loom Tee - L</h3>
+                                    <div class="flex items-baseline justify-start gap-1 mt-1">
+                                        <p class="text-sm font-semibold text-foreground">₹449.00</p>
+                                        <p class="text-xs text-muted-foreground line-through">₹749.00</p>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="group relative">
+                            <a class="block" href="/products/DwJx4mhZcrdZnaySsNKj">
+                                <div class="relative overflow-hidden rounded-md">
+                                    <img alt="Taylor Swift Tee - L" width="600" height="800" class="aspect-[3/4] w-full object-cover transition-opacity duration-300" loading="lazy" decoding="async" src="https://pub-9b7c945fa745414fb473881d71b87c48.r2.dev/b59c0e2fb926fceda55cba1012ed4176.png">
+                                    <img alt="Taylor Swift Tee - L - hover view" width="600" height="800" class="hidden md:block absolute inset-0 h-full w-full object-cover opacity-0 transition-opacity duration-300 group-hover:opacity-100" loading="lazy" decoding="async" src="https://pub-9b7c945fa745414fb473881d71b87c48.r2.dev/93fa89cec1688176c50877221fd949c9.png">
+                                    <div class="absolute top-2 left-2 bg-primary text-primary-foreground text-xs font-bold px-2 py-1 rounded z-10">- 30%</div>
+                                    <!-- <button class="inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 bg-secondary text-secondary-foreground hover:bg-secondary/80 absolute bottom-2 right-2 h-8 w-8 rounded-full md:hidden z-10" aria-label="Add Taylor Swift Tee - L to cart">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus h-4 w-4">
+                                            <path d="M5 12h14"></path>
+                                            <path d="M12 5v14"></path>
+                                        </svg>
+                                    </button> -->
+                                </div>
+                                <div class="pt-2 text-left">
+                                    <h3 class="truncate text-sm font-semibold">Taylor Swift Tee - L</h3>
+                                    <div class="flex items-baseline justify-start gap-1 mt-1">
+                                        <p class="text-sm font-semibold text-foreground">₹349.00</p>
+                                        <p class="text-xs text-muted-foreground line-through">₹499.00</p>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="group relative">
+                            <a class="block" href="/products/JkLwUnOTEPEQO8bKLlSQ">
+                                <div class="relative overflow-hidden rounded-md">
+                                    <img alt="Gas Monkey Tee - XL" width="600" height="800" class="aspect-[3/4] w-full object-cover transition-opacity duration-300" loading="lazy" decoding="async" src="https://pub-9b7c945fa745414fb473881d71b87c48.r2.dev/d0e8e0ef6419a32296696e9197b4ef3e.png">
+                                    <img alt="Gas Monkey Tee - XL - hover view" width="600" height="800" class="hidden md:block absolute inset-0 h-full w-full object-cover opacity-0 transition-opacity duration-300 group-hover:opacity-100" loading="lazy" decoding="async" src="https://pub-9b7c945fa745414fb473881d71b87c48.r2.dev/8356cd2317dd3e4546c1fe7dcf449df6.png">
+                                    <div class="absolute top-2 left-2 bg-primary text-primary-foreground text-xs font-bold px-2 py-1 rounded z-10">- 36%</div>
+                                    
+                                    <!-- <button class="inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 bg-secondary text-secondary-foreground hover:bg-secondary/80 absolute bottom-2 right-2 h-8 w-8 rounded-full md:hidden z-10" aria-label="Add Gas Monkey Tee - XL to cart">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus h-4 w-4">
+                                            <path d="M5 12h14"></path>
+                                            <path d="M12 5v14"></path>
+                                        </svg>
+                                    </button> -->
+                                </div>
+                                <div class="pt-2 text-left">
+                                    <h3 class="truncate text-sm font-semibold">Gas Monkey Tee - XL</h3>
+                                    <div class="flex items-baseline justify-start gap-1 mt-1">
+                                        <p class="text-sm font-semibold text-foreground">₹449.00</p>
+                                        <p class="text-xs text-muted-foreground line-through">₹699.00</p>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="group relative">
+                            <a class="block" href="/products/KFiDFyvTNxennNgi5LQC">
+                                <div class="relative overflow-hidden rounded-md">
+                                    <img alt="Converse Tee - L" width="600" height="800" class="aspect-[3/4] w-full object-cover transition-opacity duration-300" loading="lazy" decoding="async" src="https://pub-9b7c945fa745414fb473881d71b87c48.r2.dev/2e5250e77673ec0790150aec4d87ec79.png">
+                                    <img alt="Converse Tee - L - hover view" width="600" height="800" class="hidden md:block absolute inset-0 h-full w-full object-cover opacity-0 transition-opacity duration-300 group-hover:opacity-100" loading="lazy" decoding="async" src="https://pub-9b7c945fa745414fb473881d71b87c48.r2.dev/750b30a146a7ff0fd4f71d0674ad09b3.png">
+                                    <div class="absolute top-2 left-2 bg-primary text-primary-foreground text-xs font-bold px-2 py-1 rounded z-10">- 39%</div>
+                                    
+                                    <!-- <button class="inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 bg-secondary text-secondary-foreground hover:bg-secondary/80 absolute bottom-2 right-2 h-8 w-8 rounded-full md:hidden z-10" aria-label="Add Converse Tee - L to cart">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus h-4 w-4">
+                                            <path d="M5 12h14"></path>
+                                            <path d="M12 5v14"></path>
+                                        </svg>
+                                    </button> -->
+                                </div>
+                                <div class="pt-2 text-left">
+                                    <h3 class="truncate text-sm font-semibold">Converse Tee - L</h3>
+                                    <div class="flex items-baseline justify-start gap-1 mt-1">
+                                        <p class="text-sm font-semibold text-foreground">₹302.00</p>
+                                        <p class="text-xs text-muted-foreground line-through">₹499.00</p>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="group relative">
+                            <a class="block" href="/products/NFLdBtbYQZeMWpEXCurH">
+                                <div class="relative overflow-hidden rounded-md">
+                                    <img alt="Fruit &amp; Loom Tee - S" width="600" height="800" class="aspect-[3/4] w-full object-cover transition-opacity duration-300" loading="lazy" decoding="async" src="https://pub-9b7c945fa745414fb473881d71b87c48.r2.dev/13ad764520cebacb2e4a4e5eef9e025b.png">
+                                    <img alt="Fruit &amp; Loom Tee - S - hover view" width="600" height="800" class="hidden md:block absolute inset-0 h-full w-full object-cover opacity-0 transition-opacity duration-300 group-hover:opacity-100" loading="lazy" decoding="async" src="https://pub-9b7c945fa745414fb473881d71b87c48.r2.dev/d48f98f9cc9296caf2bd8b1f9d967f3b.png">
+                                    <div class="absolute top-2 left-2 bg-primary text-primary-foreground text-xs font-bold px-2 py-1 rounded z-10">- 40%</div>
+                                   
+                                    <!-- <button class="inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 bg-secondary text-secondary-foreground hover:bg-secondary/80 absolute bottom-2 right-2 h-8 w-8 rounded-full md:hidden z-10" aria-label="Add Fruit &amp; Loom Tee - S to cart">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus h-4 w-4">
+                                            <path d="M5 12h14"></path>
+                                            <path d="M12 5v14"></path>
+                                        </svg>
+                                    </button> -->
+                                </div>
+                                <div class="pt-2 text-left">
+                                    <h3 class="truncate text-sm font-semibold">Fruit &amp; Loom Tee - S</h3>
+                                    <div class="flex items-baseline justify-start gap-1 mt-1">
+                                        <p class="text-sm font-semibold text-foreground">₹299.00</p>
+                                        <p class="text-xs text-muted-foreground line-through">₹499.00</p>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="group relative">
+                            <a class="block" href="/products/PPgDREDw68yLeNiccLQp">
+                                <div class="relative overflow-hidden rounded-md">
+                                    <img alt="Jack &amp; Jones Tee - S" width="600" height="800" class="aspect-[3/4] w-full object-cover transition-opacity duration-300" loading="lazy" decoding="async" src="https://pub-9b7c945fa745414fb473881d71b87c48.r2.dev/95d202261823285bcc5864585315205c.webp">
+                                    <img alt="Jack &amp; Jones Tee - S - hover view" width="600" height="800" class="hidden md:block absolute inset-0 h-full w-full object-cover opacity-0 transition-opacity duration-300 group-hover:opacity-100" loading="lazy" decoding="async" src="https://pub-9b7c945fa745414fb473881d71b87c48.r2.dev/af6443781bb18edb2fe1dae67401b611.webp">
+                                    <div class="absolute top-2 left-2 bg-primary text-primary-foreground text-xs font-bold px-2 py-1 rounded z-10">- 52%</div>
+                                    
+                                    <!-- <button class="inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 bg-secondary text-secondary-foreground hover:bg-secondary/80 absolute bottom-2 right-2 h-8 w-8 rounded-full md:hidden z-10" aria-label="Add Jack &amp; Jones Tee - S to cart">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus h-4 w-4">
+                                            <path d="M5 12h14"></path>
+                                            <path d="M12 5v14"></path>
+                                        </svg>
+                                    </button> -->
+                                </div>
+                                <div class="pt-2 text-left">
+                                    <h3 class="truncate text-sm font-semibold">Jack &amp; Jones Tee - S</h3>
+                                    <div class="flex items-baseline justify-start gap-1 mt-1">
+                                        <p class="text-sm font-semibold text-foreground">₹349.00</p>
+                                        <p class="text-xs text-muted-foreground line-through">₹723.00</p>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="group relative">
+                            <a class="block" href="/products/PiNw7z0OoB7QdDy1FSij">
+                                <div class="relative overflow-hidden rounded-md">
+                                    <img alt="Nautique Moomba Masters Tee - XXl" width="600" height="800" class="aspect-[3/4] w-full object-cover transition-opacity duration-300" loading="lazy" decoding="async" src="https://firebasestorage.googleapis.com/v0/b/phu-ilv.firebasestorage.app/o/products%2FuCj3STHkxkNfcjZv1U7E95-IMG_1068.webp?alt=media&amp;token=1f0612c5-8ffa-4299-95cd-a85c0745e0d5">
+                                        <img alt="Nautique Moomba Masters Tee - XXl - hover view" width="600" height="800" class="hidden md:block absolute inset-0 h-full w-full object-cover opacity-0 transition-opacity duration-300 group-hover:opacity-100" loading="lazy" decoding="async" src="https://firebasestorage.googleapis.com/v0/b/phu-ilv.firebasestorage.app/o/products%2FeojE8AhCL8BUCnZnVUnR2V-IMG_1070.webp?alt=media&amp;token=5acbafdd-95fe-40bd-84c2-9e0f65438682">
+                                        <div class="absolute top-2 left-2 bg-primary text-primary-foreground text-xs font-bold px-2 py-1 rounded z-10">- 43%</div>
+                                        
+                                        <!-- <button class="inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 bg-secondary text-secondary-foreground hover:bg-secondary/80 absolute bottom-2 right-2 h-8 w-8 rounded-full md:hidden z-10" aria-label="Add Nautique Moomba Masters Tee - XXl to cart">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus h-4 w-4">
+                                                <path d="M5 12h14"></path>
+                                                <path d="M12 5v14"></path>
+                                            </svg>
+                                        </button> -->
+                                    </div>
+                                    <div class="pt-2 text-left">
+                                        <h3 class="truncate text-sm font-semibold">Nautique Moomba Masters Tee - XXl</h3>
+                                        <div class="flex items-baseline justify-start gap-1 mt-1">
+                                            <p class="text-sm font-semibold text-foreground">₹399.00</p>
+                                            <p class="text-xs text-muted-foreground line-through">₹699.00</p>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="group relative">
+                                <a class="block" href="/products/PkSGdhu25gOFlUb9OFlv">
+                                    <div class="relative overflow-hidden rounded-md">
+                                        <img alt="Eminem Tee - XL" width="600" height="800" class="aspect-[3/4] w-full object-cover transition-opacity duration-300" loading="lazy" decoding="async" src="https://pub-9b7c945fa745414fb473881d71b87c48.r2.dev/8b5ef459c4ba1fb38c6a833b5e655dc1.png">
+                                        <img alt="Eminem Tee - XL - hover view" width="600" height="800" class="hidden md:block absolute inset-0 h-full w-full object-cover opacity-0 transition-opacity duration-300 group-hover:opacity-100" loading="lazy" decoding="async" src="https://pub-9b7c945fa745414fb473881d71b87c48.r2.dev/b74897c5c77cb98cf7783461366228a4.png">
+                                        <div class="absolute top-2 left-2 bg-primary text-primary-foreground text-xs font-bold px-2 py-1 rounded z-10">- 14%</div>
+                                       
+                                        <!-- <button class="inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 bg-secondary text-secondary-foreground hover:bg-secondary/80 absolute bottom-2 right-2 h-8 w-8 rounded-full md:hidden z-10" aria-label="Add Eminem Tee - XL to cart">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus h-4 w-4">
+                                                <path d="M5 12h14"></path>
+                                                <path d="M12 5v14"></path>
+                                            </svg>
+                                        </button> -->
+                                    </div>
+                                    <div class="pt-2 text-left">
+                                        <h3 class="truncate text-sm font-semibold">Eminem Tee - XL</h3>
+                                        <div class="flex items-baseline justify-start gap-1 mt-1">
+                                            <p class="text-sm font-semibold text-foreground">₹299.00</p>
+                                            <p class="text-xs text-muted-foreground line-through">₹349.00</p>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="group relative">
+                                <a class="block" href="/products/QT0EZeBAQTimRDrL8EyA">
+                                    <div class="relative overflow-hidden rounded-md">
+                                        <img alt="Newlook Untamed Tee - M" width="600" height="800" class="aspect-[3/4] w-full object-cover transition-opacity duration-300" loading="lazy" decoding="async" src="https://firebasestorage.googleapis.com/v0/b/phu-ilv.firebasestorage.app/o/products%2FaxxSwHWmJKVPkt8xZvngu2-IMG_0872.webp?alt=media&amp;token=f5c60ebb-a712-4517-9023-60ae04983bd3">
+                                        <img alt="Newlook Untamed Tee - M - hover view" width="600" height="800" class="hidden md:block absolute inset-0 h-full w-full object-cover opacity-0 transition-opacity duration-300 group-hover:opacity-100" loading="lazy" decoding="async" src="https://firebasestorage.googleapis.com/v0/b/phu-ilv.firebasestorage.app/o/products%2FqzshuHjzGHM5xEb6iAYVTw-IMG_0873.webp?alt=media&amp;token=9a3783ab-5377-4a91-aeb4-06ad91668ef1">
+                                        <div class="absolute top-2 left-2 bg-primary text-primary-foreground text-xs font-bold px-2 py-1 rounded z-10">- 49%</div>
+                                        
+                                        <!-- <button class="inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 bg-secondary text-secondary-foreground hover:bg-secondary/80 absolute bottom-2 right-2 h-8 w-8 rounded-full md:hidden z-10" aria-label="Add Newlook Untamed Tee - M to cart">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus h-4 w-4">
+                                                <path d="M5 12h14"></path>
+                                                <path d="M12 5v14"></path>
+                                            </svg>
+                                        </button> -->
+                                    </div>
+                                    <div class="pt-2 text-left">
+                                        <h3 class="truncate text-sm font-semibold">Newlook Untamed Tee - M</h3>
+                                        <div class="flex items-baseline justify-start gap-1 mt-1">
+                                            <p class="text-sm font-semibold text-foreground">₹349.00</p>
+                                            <p class="text-xs text-muted-foreground line-through">₹689.00</p>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="group relative">
+                                <a class="block" href="/products/RMGDGbk7HLpfzYCXIKO2">
+                                    <div class="relative overflow-hidden rounded-md">
+                                        <img alt="Front Graphic Tee - M" width="600" height="800" class="aspect-[3/4] w-full object-cover transition-opacity duration-300" loading="lazy" decoding="async" src="https://pub-9b7c945fa745414fb473881d71b87c48.r2.dev/0777c801dfe28d53c0b6965bae84b8d5.png">
+                                        <img alt="Front Graphic Tee - M - hover view" width="600" height="800" class="hidden md:block absolute inset-0 h-full w-full object-cover opacity-0 transition-opacity duration-300 group-hover:opacity-100" loading="lazy" decoding="async" src="https://pub-9b7c945fa745414fb473881d71b87c48.r2.dev/348efa721f32d913636bed708d080711.png">
+                                        <div class="absolute top-2 left-2 bg-primary text-primary-foreground text-xs font-bold px-2 py-1 rounded z-10">- 40%</div>
+                                        
+                                        <!-- <button class="inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 bg-secondary text-secondary-foreground hover:bg-secondary/80 absolute bottom-2 right-2 h-8 w-8 rounded-full md:hidden z-10" aria-label="Add Front Graphic Tee - M to cart">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus h-4 w-4">
+                                                <path d="M5 12h14"></path>
+                                                <path d="M12 5v14"></path>
+                                            </svg>
+                                        </button> -->
+                                    </div>
+                                    <div class="pt-2 text-left">
+                                        <h3 class="truncate text-sm font-semibold">Front Graphic Tee - M</h3>
+                                        <div class="flex items-baseline justify-start gap-1 mt-1">
+                                            <p class="text-sm font-semibold text-foreground">₹301.00</p>
+                                            <p class="text-xs text-muted-foreground line-through">₹499.00</p>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="group relative">
+                                <a class="block" href="/products/Sj8IGlX4n8OCATYQj417">
+                                    <div class="relative overflow-hidden rounded-md">
+                                        <img alt="Dear Mama 2pac Tee - XS" width="600" height="800" class="aspect-[3/4] w-full object-cover transition-opacity duration-300" loading="lazy" decoding="async" src="https://firebasestorage.googleapis.com/v0/b/phu-ilv.firebasestorage.app/o/products%2F8qQ3Fd5eqCpQeaSj2Au19w-IMG_0839.webp?alt=media&amp;token=b0e404bc-1077-42b8-a8e7-71c758072c3b">
+                                        <img alt="Dear Mama 2pac Tee - XS - hover view" width="600" height="800" class="hidden md:block absolute inset-0 h-full w-full object-cover opacity-0 transition-opacity duration-300 group-hover:opacity-100" loading="lazy" decoding="async" src="https://firebasestorage.googleapis.com/v0/b/phu-ilv.firebasestorage.app/o/products%2F4GssyX3FW7Vzau6w8cRZUX-IMG_0840.webp?alt=media&amp;token=5847e511-0b7a-4ba4-a135-f4fbfbe667e9">
+                                        <div class="absolute top-2 left-2 bg-primary text-primary-foreground text-xs font-bold px-2 py-1 rounded z-10">- 50%</div>
+                                    
+                                        <!-- <button class="inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 bg-secondary text-secondary-foreground hover:bg-secondary/80 absolute bottom-2 right-2 h-8 w-8 rounded-full md:hidden z-10" aria-label="Add Dear Mama 2pac Tee - XS to cart">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus h-4 w-4">
+                                                <path d="M5 12h14"></path>
+                                                <path d="M12 5v14"></path>
+                                            </svg>
+                                        </button> -->
+                                    </div>
+                                    <div class="pt-2 text-left">
+                                        <h3 class="truncate text-sm font-semibold">Dear Mama 2pac Tee - XS</h3>
+                                        <div class="flex items-baseline justify-start gap-1 mt-1">
+                                            <p class="text-sm font-semibold text-foreground">₹328.00</p>
+                                            <p class="text-xs text-muted-foreground line-through">₹652.00</p>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="group relative">
+                                <a class="block" href="/products/Sn1DCFYPWr6d42phrDsw">
+                                    <div class="relative overflow-hidden rounded-md">
+                                        <img alt="Front Printed tee - L" width="600" height="800" class="aspect-[3/4] w-full object-cover transition-opacity duration-300" loading="lazy" decoding="async" src="https://pub-9b7c945fa745414fb473881d71b87c48.r2.dev/5f9367d1dce86c590893f8487fa89d04.webp">
+                                        <img alt="Front Printed tee - L - hover view" width="600" height="800" class="hidden md:block absolute inset-0 h-full w-full object-cover opacity-0 transition-opacity duration-300 group-hover:opacity-100" loading="lazy" decoding="async" src="https://pub-9b7c945fa745414fb473881d71b87c48.r2.dev/3f323b6fabea346bdbad76e2ee12c14e.webp">
+                                        <div class="absolute top-2 left-2 bg-primary text-primary-foreground text-xs font-bold px-2 py-1 rounded z-10">- 31%</div>
+                                        
+                                        <!-- <button class="inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 bg-secondary text-secondary-foreground hover:bg-secondary/80 absolute bottom-2 right-2 h-8 w-8 rounded-full md:hidden z-10" aria-label="Add Front Printed tee - L to cart">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus h-4 w-4">
+                                                <path d="M5 12h14"></path>
+                                                <path d="M12 5v14"></path>
+                                            </svg>
+                                        </button> -->
+                                    </div>
+                                    <div class="pt-2 text-left">
+                                        <h3 class="truncate text-sm font-semibold">Front Printed tee - L</h3>
+                                        <div class="flex items-baseline justify-start gap-1 mt-1">
+                                            <p class="text-sm font-semibold text-foreground">₹549.00</p>
+                                            <p class="text-xs text-muted-foreground line-through">₹799.00</p>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="mt-8 text-center">
+                            <button id="loadMoreBtn" class="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&amp;_svg]:pointer-events-none [&amp;_svg]:size-4 [&amp;_svg]:shrink-0 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-10 px-4 py-2">Load More</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    <script>
+        (() => {
+            const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+            const mobileMenuClose = document.getElementById('mobileMenuClose');
+            const mobileMenu = document.getElementById('mobileMenu');
+            const mobileFilterToggle = document.getElementById('mobileFilterToggle');
+            const mobileFilterClose = document.getElementById('mobileFilterClose');
+            const filterSidebar = document.getElementById('filterSidebar');
+            const searchInput = document.getElementById('productSearch');
+            const priceRange = document.getElementById('priceRange');
+            const priceMaxLabel = document.getElementById('priceMaxLabel');
+            const priceThumb = document.querySelector('.price-thumb');
+            const productGrid = document.getElementById('productGrid');
+            const productCount = document.getElementById('productCount');
+            const clearButton = document.querySelector('.clear-filters-btn');
+            const loadMoreBtn = document.getElementById('loadMoreBtn');
+            const filterTriggers = Array.from(document.querySelectorAll('.filter-trigger'));
+            const emptyState = document.createElement('div');
+            const visibleStep = 9;
+            let visibleLimit = visibleStep;
+
+            emptyState.className = 'empty-products is-hidden';
+            emptyState.textContent = 'No products match your current filters.';
+            productGrid.appendChild(emptyState);
+
+            const detectSize = (title) => {
+                const match = title.match(/-\s*([A-Za-z0-9]+)/);
+                return match ? match[1].toUpperCase() : 'FREE';
+            };
+
+            const detectColor = (title) => {
+                const lower = title.toLowerCase();
+                const colorMap = [
+                    ['black', 'Black'],
+                    ['blue', 'Blue'],
+                    ['faded', 'Faded'],
+                    ['green', 'Green'],
+                    ['red', 'Red'],
+                    ['white', 'White'],
+                    ['grey', 'Grey'],
+                    ['gray', 'Grey'],
+                    ['brown', 'Brown'],
+                ];
+
+                const found = colorMap.find(([key]) => lower.includes(key));
+                return found ? found[1] : 'Standard';
+            };
+
+            const products = Array.from(productGrid.querySelectorAll(':scope > .group.relative')).map((card) => {
+                const title = card.querySelector('h3')?.textContent.trim() || '';
+                const priceText = card.querySelector('.text-sm.font-semibold.text-foreground')?.textContent || '0';
+                const price = Number(priceText.replace(/[^\d.]/g, '')) || 0;
+                return {
+                    element: card,
+                    title,
+                    searchText: title.toLowerCase(),
+                    price,
+                    size: detectSize(title),
+                    gender: 'Unisex',
+                    color: detectColor(title),
+                };
+            });
+
+            const state = {
+                search: '',
+                maxPrice: Number(priceRange?.value || 549),
+                gender: new Set(),
+                color: new Set(),
+                size: new Set(),
+            };
+
+            const groups = {
+                gender: [...new Set(products.map((item) => item.gender))],
+                color: ['Black', 'Blue', 'Faded', 'Green', 'Grey', 'Standard'],
+                size: [...new Set(products.map((item) => item.size))].sort((a, b) => a.localeCompare(b, undefined, { numeric: true })),
+            };
+
+            const renderOptions = (groupName, values) => {
+                const host = document.querySelector(`[data-filter-group="${groupName}"]`);
+                if (!host) return;
+
+                host.innerHTML = values.map((value) => `
+                    <label class="filter-option" data-group="${groupName}" data-value="${value}">
+                        <input type="checkbox" value="${value}">
+                        <span>${value}</span>
+                    </label>
+                `).join('');
+            };
+
+            renderOptions('gender', groups.gender);
+            renderOptions('color', groups.color);
+            renderOptions('size', groups.size);
+
+            const updatePriceThumb = () => {
+                if (!priceRange || !priceThumb || !priceMaxLabel) return;
+                const min = Number(priceRange.min || 0);
+                const max = Number(priceRange.max || 0);
+                const value = Number(priceRange.value || max);
+                const progress = max > min ? (value - min) / (max - min) : 1;
+                priceThumb.style.left = `calc(${progress * 100}% - 13px)`;
+                priceThumb.style.right = 'auto';
+                priceMaxLabel.innerHTML = `&#8377;${value}`;
+            };
+
+            const updateOptionStyles = () => {
+                document.querySelectorAll('.filter-option').forEach((option) => {
+                    const group = option.dataset.group;
+                    const value = option.dataset.value;
+                    const checked = state[group]?.has(value);
+                    option.classList.toggle('active', Boolean(checked));
+                    const input = option.querySelector('input');
+                    if (input) input.checked = Boolean(checked);
+                });
+            };
+
+            const matchesSet = (set, value) => set.size === 0 || set.has(value);
+
+            const setMobileMenuState = (isOpen) => {
+                if (!mobileMenu || !mobileMenuToggle) return;
+                mobileMenu.classList.toggle('open', isOpen);
+                mobileMenuToggle.classList.toggle('open', isOpen);
+                mobileMenuToggle.setAttribute('aria-expanded', String(isOpen));
+                document.body.style.overflow = isOpen ? 'hidden' : '';
+            };
+
+            const setMobileFilterState = (isOpen) => {
+                if (!filterSidebar || !mobileFilterToggle) return;
+                filterSidebar.classList.toggle('mobile-open', isOpen);
+                mobileFilterToggle.setAttribute('aria-expanded', String(isOpen));
+                mobileFilterToggle.dataset.state = isOpen ? 'open' : 'closed';
+                document.body.style.overflow = isOpen ? 'hidden' : '';
+            };
+
+            const applyFilters = () => {
+                const matched = products.filter((product) => {
+                    return (
+                        product.searchText.includes(state.search) &&
+                        product.price <= state.maxPrice &&
+                        matchesSet(state.gender, product.gender) &&
+                        matchesSet(state.color, product.color) &&
+                        matchesSet(state.size, product.size)
+                    );
+                });
+
+                products.forEach((product) => product.element.classList.add('is-hidden'));
+
+                matched.forEach((product, index) => {
+                    const shouldShow = index < visibleLimit;
+                    product.element.classList.toggle('is-hidden', !shouldShow);
+                });
+
+                const visibleCount = Math.min(matched.length, visibleLimit);
+                productCount.textContent = `${matched.length} products found.`;
+                emptyState.classList.toggle('is-hidden', matched.length !== 0);
+                loadMoreBtn.classList.toggle('is-hidden', matched.length <= visibleCount);
+                updateOptionStyles();
+                updatePriceThumb();
+            };
+
+            filterTriggers.forEach((trigger) => {
+                const panelId = trigger.getAttribute('aria-controls');
+                const panel = panelId ? document.getElementById(panelId) : null;
+                if (!panel || panel.classList.contains('price-panel')) return;
+
+                trigger.addEventListener('click', () => {
+                    const isOpen = trigger.getAttribute('aria-expanded') === 'true';
+                    trigger.setAttribute('aria-expanded', String(!isOpen));
+                    panel.hidden = isOpen;
+                    panel.dataset.state = isOpen ? 'closed' : 'open';
+                });
+            });
+
+            document.addEventListener('change', (event) => {
+                const input = event.target;
+                if (!(input instanceof HTMLInputElement)) return;
+                const option = input.closest('.filter-option');
+                if (!option) return;
+
+                const group = option.dataset.group;
+                const value = option.dataset.value;
+                if (!group || !value || !state[group]) return;
+
+                if (input.checked) {
+                    state[group].add(value);
+                } else {
+                    state[group].delete(value);
+                }
+
+                visibleLimit = visibleStep;
+                applyFilters();
+            });
+
+            searchInput?.addEventListener('input', () => {
+                state.search = searchInput.value.trim().toLowerCase();
+                visibleLimit = visibleStep;
+                applyFilters();
+            });
+
+            priceRange?.addEventListener('input', () => {
+                state.maxPrice = Number(priceRange.value);
+                visibleLimit = visibleStep;
+                applyFilters();
+            });
+
+            clearButton?.addEventListener('click', () => {
+                state.search = '';
+                state.maxPrice = Number(priceRange?.max || 549);
+                state.gender.clear();
+                state.color.clear();
+                state.size.clear();
+                visibleLimit = visibleStep;
+                if (searchInput) searchInput.value = '';
+                if (priceRange) priceRange.value = String(state.maxPrice);
+                applyFilters();
+            });
+
+            loadMoreBtn?.addEventListener('click', () => {
+                visibleLimit += visibleStep;
+                applyFilters();
+            });
+
+            mobileMenuToggle?.addEventListener('click', () => {
+                const isOpen = mobileMenu?.classList.contains('open');
+                setMobileMenuState(!isOpen);
+            });
+
+            mobileMenuClose?.addEventListener('click', () => {
+                setMobileMenuState(false);
+            });
+
+            mobileMenu?.addEventListener('click', (event) => {
+                if (event.target === mobileMenu) {
+                    setMobileMenuState(false);
+                }
+            });
+
+            mobileMenu?.querySelectorAll('a').forEach((link) => {
+                link.addEventListener('click', () => setMobileMenuState(false));
+            });
+
+            mobileFilterToggle?.addEventListener('click', () => {
+                const isOpen = filterSidebar?.classList.contains('mobile-open');
+                setMobileFilterState(!isOpen);
+            });
+
+            mobileFilterClose?.addEventListener('click', () => {
+                setMobileFilterState(false);
+            });
+
+            filterSidebar?.addEventListener('click', (event) => {
+                if (event.target === filterSidebar) {
+                    setMobileFilterState(false);
+                }
+            });
+
+            window.addEventListener('resize', () => {
+                if (window.innerWidth >= 768) {
+                    setMobileFilterState(false);
+                }
+            });
+
+            applyFilters();
+        })();
+    </script>
+</body>
+</html>

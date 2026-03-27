@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+            /* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Body */
+body {
+  font-family: Arial, sans-serif;
+}
+
+/* Header */
+header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: #f3f3f3;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+/* Container */
+.container {
+  max-width: 1200px;
+  margin: auto;
+  padding: 10px 20px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.mx-auto {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.px-4 {
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.flex {
+  display: flex;
+}
+
+.hidden {
+  display: none;
+}
+
+.items-center {
+  align-items: center;
+}
+
+.justify-between {
+  justify-content: space-between;
+}
+
+.gap-8 {
+  gap: 32px;
+}
+
+.h-16 {
+  min-height: 64px;
+}
+
+/* Logo */
+header a {
+  text-decoration: none;
+}
+
+header .font-display {
+  font-size: 28px;
+  font-weight: bold;
+  color: #222;
+}
+
+/* Gradient text (Trend) */
+.text-gradient {
+  color: #f97316; /* orange */
+}
+
+/* Navbar */
+nav {
+  display: flex;
+  gap: 30px;
+}
+
+nav a {
+  font-size: 14px;
+  color: #666;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+/* Active link */
+nav a:first-child {
+  color: #f97316;
+}
+
+/* Hover */
+nav a:hover {
+  color: #f97316;
+}
+
+/* Right side icons */
+header .flex {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+/* Cart button */
+header .flex a {
+  padding: 8px;
+  transition: 0.3s;
+}
+
+header .flex a:hover {
+  background: transparent;
+}
+
+.navbar-cart {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #6b21a8 !important;
+}
+
+.navbar-cart svg {
+  width: 100px;
+  height: 100px;
+  stroke-width: 1.8;
+  stroke: #6b21a8 !important;
+}
+
+.navbar-menu {
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  padding: 6px;
+  color: #111111 !important;
+}
+
+.navbar-menu svg {
+  width: 36px;
+  height: 36px;
+  stroke-width: 2.2;
+  stroke: #111111 !important;
+}
+
+.navbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.header-menu-toggle {
+  display: none;
+  width: 42px;
+  height: 42px;
+  align-items: center;
+  justify-content: center;
+  /* border: 1px solid rgba(17, 24, 39, 0.08); */
+  border-radius: 14px;
+  /* background: rgba(255, 255, 255, 0.96); */
+  /* box-shadow: 0 14px 30px rgba(15, 23, 42, 0.08); */
+  flex-shrink: 0;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+}
+
+.header-menu-toggle-lines {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  position: relative;
+  width: 22px;
+  height: 18px;
+  justify-content: center;
+}
+
+.header-menu-toggle-lines span {
+  display: block;
+  width: 22px;
+  height: 2.5px;
+  border-radius: 999px;
+  background: #4b5563;
+  position: absolute;
+  left: 0;
+  transition: transform 0.24s ease, opacity 0.2s ease, top 0.24s ease;
+}
+
+.header-menu-toggle-lines span:nth-child(1) {
+  top: 0;
+}
+
+.header-menu-toggle-lines span:nth-child(2) {
+  top: 7px;
+}
+
+.header-menu-toggle-lines span:nth-child(3) {
+  top: 14px;
+}
+
+.header-menu-toggle.open .header-menu-toggle-lines span:nth-child(1) {
+  top: 7px;
+  transform: rotate(45deg);
+}
+
+.header-menu-toggle.open .header-menu-toggle-lines span:nth-child(2) {
+  opacity: 0;
+}
+
+.header-menu-toggle.open .header-menu-toggle-lines span:nth-child(3) {
+  top: 7px;
+  transform: rotate(-45deg);
+}
+
+.header-mobile-menu {
+  position: fixed;
+  inset: 0;
+  padding: 12px 12px 20px;
+  background: rgba(241, 245, 249, 0.82);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateX(100%);
+  transition: opacity 0.22s ease, transform 0.28s ease, visibility 0.22s ease;
+  z-index: 120;
+  display: flex;
+  flex-direction: column;
+}
+
+.header-mobile-menu.open {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(0);
+}
+
+.header-mobile-menu a {
+  display: flex;
+  align-items: center;
+  min-height: 48px;
+  padding: 0;
+  color: #475569;
+  text-decoration: none;
+  font-size: 18px;
+  font-weight: 500;
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.header-mobile-menu a:hover {
+  color: #ea580c;
+  transform: translateX(2px);
+}
+
+.menu-panel-shell {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 8px 10px 18px;
+  background: #ffffff;
+  border: 1px solid #dbe4ee;
+  box-shadow: 0 20px 40px rgba(15, 23, 42, 0.08);
+}
+
+.menu-panel-top {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 20px;
+}
+
+.menu-panel-close {
+  width: 40px;
+  height: 40px;
+  border: none;
+  background: transparent;
+  color: #6b7280;
+  font-size: 34px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.menu-panel-links {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 6px 10px 0;
+}
+
+.menu-panel-spacer {
+  flex: 1;
+}
+
+.menu-panel-cta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 54px;
+  margin: 0 8px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #f28a5b, #f07c56);
+  color: #334155 !important;
+  font-size: 17px !important;
+  font-weight: 500 !important;
+  box-shadow: 0 16px 28px rgba(240, 124, 86, 0.24);
+}
+
+.menu-panel-cta:hover {
+  color: #1f2937 !important;
+  transform: none !important;
+}
+
+
+/* Mobile menu button */
+button {
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+/* Hide mobile button on desktop */
+@media (min-width: 768px) {
+  .md\:flex {
+    display: flex;
+  }
+
+  .md\:h-20 {
+    min-height: 80px;
+  }
+}
+
+/* Hide nav on mobile */
+@media (max-width: 767px) {
+  .container {
+    padding: 10px 16px;
+  }
+
+  .px-4 {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  nav {
+    display: none;
+  }
+
+  .header-menu-toggle {
+    display: inline-flex;
+  }
+
+  header .font-display {
+    font-size: 24px;
+  }
+}
+
+/* Category section */
+.category-section {
+  padding: 56px 0 64px;
+  background: #f8f8f8;
+}
+
+.category-header {
+  margin-bottom: 28px;
+}
+
+.category-title {
+  font-size: 18px;
+  line-height: 1.1;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 1.8px;
+  color: #0f172a;
+}
+
+.category-subtitle {
+  margin-top: 3px;
+  font-size: 12px;
+  line-height: 1;
+  text-transform: uppercase;
+  letter-spacing: 2.4px;
+  color: #64748b;
+}
+
+.category-row {
+  display: flex;
+  gap: 18px;
+  overflow-x: auto;
+  padding: 0 72px 14px 0;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.category-row::-webkit-scrollbar {
+  display: none;
+}
+
+.category-item {
+  position: relative;
+  flex: 0 0 380px;
+  aspect-ratio: 3 / 4;
+  overflow: hidden;
+  border-radius: 14px;
+  background: #d4d4d4;
+  text-decoration: none;
+}
+
+.category-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.35s ease;
+}
+
+.category-item::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.64) 0%, rgba(0, 0, 0, 0.18) 42%, rgba(0, 0, 0, 0.03) 68%);
+}
+
+.category-item:hover img {
+  transform: scale(1.04);
+}
+
+.category-content {
+  position: absolute;
+  left: 20px;
+  right: 20px;
+  bottom: 18px;
+  z-index: 1;
+  color: #ffffff;
+}
+
+.category-content h3 {
+  font-size: 19px;
+  line-height: 1.1;
+  font-weight: 800;
+}
+
+.category-content p {
+  margin-top: 6px;
+  font-size: 14px;
+  line-height: 1.2;
+  color: rgba(255, 255, 255, 0.95);
+}
+
+@media (max-width: 1024px) {
+  .category-item {
+    flex-basis: 320px;
+  }
+}
+
+@media (max-width: 767px) {
+  .category-section {
+    padding: 44px 0 50px;
+  }
+
+  .category-row {
+    gap: 14px;
+    padding-right: 32px;
+  }
+
+  .category-item {
+    flex-basis: 74vw;
+    min-width: 260px;
+    max-width: 310px;
+  }
+
+  .category-content {
+    left: 16px;
+    right: 16px;
+    bottom: 16px;
+  }
+
+  .category-content h3 {
+    font-size: 18px;
+  }
+
+  .category-content p {
+    font-size: 13px;
+  }
+}
+
+
+    </style>
+</head>
+<body>
+     <header class="sticky top-0 z-50 bg-background/95 backdrop-blur-md border-b border-border">
+        <div class="container mx-auto px-4 flex items-center justify-between h-16 md:h-20">
+            <a class="font-display text-2xl md:text-3xl font-bold tracking-tight text-foreground" href="index.html">Mero
+                <span class="text-gradient">Trend</span>
+            </a>
+            <nav class="hidden md:flex items-center gap-8">
+                <a class="text-sm font-medium tracking-wide transition-colors hover:text-primary text-primary" href="index.html">Home</a>
+                <a class="text-sm font-medium tracking-wide transition-colors hover:text-primary text-muted-foreground" href="shop.html">Shop</a>
+                <a class="text-sm font-medium tracking-wide transition-colors hover:text-primary text-muted-foreground" href="categories.html">Categories</a>
+                <a class="text-sm font-medium tracking-wide transition-colors hover:text-primary text-muted-foreground" href="about.html">About</a>
+                <a class="text-sm font-medium tracking-wide transition-colors hover:text-primary text-muted-foreground" href="contact.html">Contact</a>
+            </nav>
+            <button type="button" class="header-menu-toggle" id="mobileMenuToggle" aria-label="Open navigation menu" aria-expanded="false">
+                <span class="header-menu-toggle-lines">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </span>
+            </button>
+        </div>
+        <div class="header-mobile-menu" id="mobileMenu">
+            <div class="menu-panel-shell">
+                <div class="menu-panel-top">
+                    <button type="button" class="menu-panel-close" id="mobileMenuClose" aria-label="Close navigation menu">×</button>
+                </div>
+                <div class="menu-panel-links">
+                    <a href="index.html">Home</a>
+                    <a href="about.html">About</a>
+                    <a href="shop.html">Shop</a>
+                    <a href="shop.html">Categories</a>
+                    <a href="contact.html">Contact</a>
+                </div>
+                <div class="menu-panel-spacer"></div>
+            </div>
+        </div>
+    </header>
+
+<section class="category-section">
+    <div class="container">
+        <div class="category-header">
+            <h2 class="category-title">Shop by Category</h2>
+            <p class="category-subtitle">Curated Collections</p>
+        </div>
+        <div class="category-row">
+            <a class="category-item" href="../categories/aboutcategories/saaree.html">
+                <img alt="Tees" loading="lazy" src="https://firebasestorage.googleapis.com/v0/b/phu-ilv.firebasestorage.app/o/categories%2FbLt6rSQaJotW8iNhvu87Xt-IMG_1104-scaled.png?alt=media&amp;token=b535f51d-eebf-4fd1-8e03-09a5cfc7c859">
+                <div class="category-content">
+                    <h3>saree</h3>
+                    <p>46 Products</p>
+                </div>
+            </a>
+            <a class="category-item" href="../categories/aboutcategories/kurtiset.html">
+                <img alt="Jorts" loading="lazy" src="https://firebasestorage.googleapis.com/v0/b/phu-ilv.firebasestorage.app/o/categories%2Frbkdn2HS9qw1BTyfC78HFS-jorts.png?alt=media&amp;token=a2c8ff97-5251-4b72-b500-3170a9c4f85f">
+                <div class="category-content">
+                    <h3>kurti</h3>
+                    <p>23 Products</p>
+                </div>
+            </a>
+            <a class="category-item" href="../categories/aboutcategories/nighty.html">
+                <img alt="Pants" loading="lazy" src="https://firebasestorage.googleapis.com/v0/b/phu-ilv.firebasestorage.app/o/categories%2FaX31Dx32P87egZL6GEzJCB-IMG_1322.jpg?alt=media&amp;token=9af34af1-c660-42a9-a52f-f22d378bd589">
+                <div class="category-content">
+                    <h3>nighty</h3>
+                    <p>30 Products</p>
+                </div>
+            </a>
+            <a class="category-item" href="../categories/aboutcategories/lahenga.html">
+                <img alt="Denim" loading="lazy" src="https://pub-9b7c945fa745414fb473881d71b87c48.r2.dev/f79607ee6eb0652c33c2a6df410a4f3e.jpg">
+                <div class="category-content">
+                    <h3>lahrnga</h3>
+                    <p>11 Products</p>
+                </div>
+            </a>
+            <a class="category-item" href="../categories/carhartt--dickies">
+                <img alt="Carhartt &amp; Dickies" loading="lazy" src="https://firebasestorage.googleapis.com/v0/b/phu-ilv.firebasestorage.app/o/categories%2F9ADLbkbBQsgdjrasoHc8k3-IMG_8806.jpg?alt=media&amp;token=2e273a8f-5ca8-424e-a9b0-5f915cd429a7">
+                <div class="category-content">
+                    <h3>Carhartt &amp; Dickies</h3>
+                    <p>33 Products</p>
+                </div>
+            </a>
+        </div>
+    </div>
+</section>
+<script>
+(() => {
+  const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+  const mobileMenuClose = document.getElementById('mobileMenuClose');
+  const mobileMenu = document.getElementById('mobileMenu');
+
+  const setMobileMenuState = (isOpen) => {
+    if (!mobileMenu || !mobileMenuToggle) return;
+    mobileMenu.classList.toggle('open', isOpen);
+    mobileMenuToggle.classList.toggle('open', isOpen);
+    mobileMenuToggle.setAttribute('aria-expanded', String(isOpen));
+    document.body.style.overflow = isOpen ? 'hidden' : '';
+  };
+
+  mobileMenuToggle?.addEventListener('click', () => {
+    const isOpen = mobileMenu?.classList.contains('open');
+    setMobileMenuState(!isOpen);
+  });
+
+  mobileMenuClose?.addEventListener('click', () => {
+    setMobileMenuState(false);
+  });
+
+  mobileMenu?.addEventListener('click', (event) => {
+    if (event.target === mobileMenu) {
+      setMobileMenuState(false);
+    }
+  });
+
+  mobileMenu?.querySelectorAll('a').forEach((link) => {
+    link.addEventListener('click', () => setMobileMenuState(false));
+  });
+})();
+</script>
+</body>
+</html>
